@@ -1,13 +1,14 @@
 <template>
   <the-header></the-header>
+  
 </template>
 
 <script>
-import TheHeader from "./components/layout/TheHeader.vue"
+import TheHeader from "./components/layout/TheHeader.vue";
 export default {
   components: {
-    TheHeader
-  }
+    TheHeader,
+  },
 };
 </script>
 
@@ -24,5 +25,10 @@ html {
 
 body {
   margin: 0;
+}
+
+.container {
+  width: 60vw;
+  margin: 0 auto;
 }
 </style>
