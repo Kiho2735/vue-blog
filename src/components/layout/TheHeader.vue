@@ -21,7 +21,7 @@
           </ui>
         </div>
 
-        <router-link to="/"> Sign In </router-link>
+        <base-button to="/">Sign In</base-button>
 
         <!-- <div class="nav__icons">
           <font-awesome-icon :icon="['fas', 'user']" class="fa-2xl" />
@@ -69,7 +69,7 @@ a {
 .nav__item a:active,
 .nav__item a:hover,
 .nav__item a.router-link-active {
-  color: rgb(255, 0, 34);
+  color: rgb(217, 0, 255);
 }
 
 .nav__hero {
