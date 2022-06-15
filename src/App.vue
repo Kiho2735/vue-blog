@@ -1,6 +1,5 @@
 <template>
   <the-header></the-header>
-  
 </template>
 
 <script>
@@ -25,6 +24,7 @@ html {
 
 body {
   margin: 0;
+  background-color: #fbf1e7;
 }
 
 .container {
