@@ -58,9 +58,9 @@ export default {
         this.isLoading = true;
 
         try {
-          await this.$store.dispatch("auth/signup", {
-            email: this.userId,
-            password: this.password,
+          await this.$store.dispatch("auth/login", {
+            email: this.userId.val,
+            password: this.password.val,
           });
         } catch (err) {
           this.error = err.message;
