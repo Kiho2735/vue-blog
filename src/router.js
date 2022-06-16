@@ -1,8 +1,10 @@
-import { createRouter, createHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
+
+import UserAuth from "./pages/auth/UserAuth.vue";
 
 const router = createRouter({
-  history: createHistory(),
-  routes: [],
+  history: createWebHistory(),
+  routes: [{ path: "/login", component: UserAuth }],
 });
 
 export default router;
