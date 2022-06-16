@@ -1,14 +1,34 @@
 <template>
-  Hello World.
+  <the-header></the-header>
 </template>
 
 <script>
-
+import TheHeader from "./components/layout/TheHeader.vue";
 export default {
-
-}
+  components: {
+    TheHeader,
+  },
+};
 </script>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #fbf1e7;
+}
+
+.container {
+  width: 60vw;
+  margin: 0 auto;
+}
 </style>
