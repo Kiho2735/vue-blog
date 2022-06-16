@@ -1,4 +1,10 @@
 <template>
+  <base-dialog :show="!!error" title="Error" @close="closeDialog">
+    <p>{{ error }}</p>
+  </base-dialog>
+  <base-dialog :show="isLoading" title="Authenticating...">
+    Loading...
+  </base-dialog>
   <form @submit.prevent="login">
     <div class="form-control">
       <label for="id">Email</label>
@@ -38,10 +44,31 @@ export default {
         val: "",
         isEmpty: false,
       },
+      isLoading: false,
+      error: null,
     };
   },
   methods: {
-    login() {},
+    async login() {
+      if (
+        !this.userId.isEmpty &&
+        !this.userId.isValid &&
+        !this.password.isEmpty
+      ) {
+        this.isLoading = true;
+
+        try {
+          await this.$store.dispatch("auth/signup", {
+            email: this.userId,
+            password: this.password,
+          });
+        } catch (err) {
+          this.error = err.message;
+        }
+
+        this.isLoading = false;
+      }
+    },
     validateId() {
       if (this.userId.val == "") {
         this.userId.isEmpty = true;
@@ -60,6 +87,9 @@ export default {
       } else {
         this.password.isEmpty = false;
       }
+    },
+    closeDialog() {
+      this.error = null;
     },
   },
 };
