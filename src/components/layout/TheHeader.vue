@@ -37,7 +37,7 @@
   </header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 a {
   text-decoration: none;
   color: #000;

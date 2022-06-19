@@ -3,7 +3,6 @@ import { createApp } from "vue";
 import App from "./App.vue";
 
 import BaseButton from "./components/ui/BaseButton.vue";
-
 import BaseDialog from "./components/ui/BaseDialog.vue";
 
 import router from "./router.js";
