@@ -13,23 +13,21 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap");
 
 * {
   box-sizing: border-box;
-}
-
-html {
-  font-family: "Roboto", sans-serif;
+  font-family: "Oswald", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  background-color: #fbf1e7;
+  background-color: rgb(255, 255, 255);
 }
 
 .container {
-  width: 60vw;
+  width: 70vw;
   margin: 0 auto;
 }
 </style>

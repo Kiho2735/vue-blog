@@ -2,36 +2,39 @@
   <header class="container">
     <nav class="nav">
       <div class="nav__header">
-        <h1><router-link to="/"> KHL </router-link></h1>
+        <h1 class="nav__logo">
+          <router-link :to="{ name: 'Home' }"> Calm </router-link>
+        </h1>
 
         <div class="nav__menu">
           <ui class="nav__list">
             <li class="nav__item">
-              <router-link to="/">Daily</router-link>
+              <router-link to="/home">Blog</router-link>
             </li>
             <li class="nav__item">
-              <router-link to="/">Food</router-link>
+              <router-link to="/1">About</router-link>
             </li>
             <li class="nav__item">
-              <router-link to="/">Travel</router-link>
-            </li>
-            <li class="nav__item">
-              <router-link to="/">Sport</router-link>
+              <router-link to="/2">Contact</router-link>
             </li>
           </ui>
+
+          <div class="nav__icons">
+            <a href="">
+              <font-awesome-icon
+                :icon="['fab', 'facebook-f']"
+                class="fa-xl nav__icon nav__icon-facebook"
+            /></a>
+
+            <a href=""
+              ><font-awesome-icon
+                :icon="['fab', 'instagram']"
+                class="fa-xl nav__icon nav__icon-instagram"
+            /></a>
+          </div>
+
+          <base-button to="#">Log In</base-button>
         </div>
-
-        <base-button to="/">Sign In</base-button>
-
-        <!-- <div class="nav__icons">
-          <font-awesome-icon :icon="['fas', 'user']" class="fa-2xl" />
-          <font-awesome-icon :icon="['fas', 'cart-shopping']" class="fa-2xl" />
-        </div> -->
-      </div>
-
-      <div class="nav__hero">
-        <h4>This is Kiho's Blog</h4>
-        <h1>Welcome!</h1>
       </div>
     </nav>
   </header>
@@ -44,40 +47,92 @@ a {
 }
 
 .nav {
-  display: flex;
-  flex-direction: column;
+  margin-top: 30px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    font-size: 1.8rem;
+  }
+
+  &__menu {
+    display: flex;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    margin-right: 10px;
+    align-items: center;
+  }
+
+  &__icons {
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+  }
 }
 
-.nav__header {
-  display: flex;
-  justify-content: space-between;
+.nav__item {
+  font-size: 1.1rem;
+  margin-right: 5rem;
+
+  &:last-child {
+    margin-right: 2rem;
+  }
+
+  a {
+    position: relative;
+    transition: color 0.3s ease-out;
+
+    &:hover {
+      color: rgb(0, 160, 253);
+    }
+
+    &.router-link-active {
+      color: rgb(0, 160, 253);
+
+      &:after {
+        content: "";
+        width: 100%;
+        height: 4px;
+        position: absolute;
+        top: 1.8rem;
+        left: 0;
+        background-color: rgb(0, 160, 253);
+      }
+    }
+
+    &:after {
+      content: "";
+      width: 0;
+      height: 4px;
+      position: absolute;
+      top: 1.8rem;
+      left: 0;
+      background-color: rgb(0, 160, 253);
+      transition: all 0.3s;
+    }
+
+    &:hover:after {
+      width: 100%;
+    }
+  }
 }
 
-.nav__menu {
-  margin-top: calc(0.83em * 2);
-}
+.nav__icon {
+  padding: 0 0.7rem;
+  transition: color 0.3s ease-out;
 
-.nav__list {
-  list-style: none;
-  display: flex;
-}
+  &-facebook:hover {
+    color: #4e71ba;
+  }
 
-.nav__item a {
-  padding: 0.5rem;
-}
-
-.nav__item a:active,
-.nav__item a:hover,
-.nav__item a.router-link-active {
-  color: rgb(217, 0, 255);
-}
-
-.nav__hero {
-  width: 100%;
-  height: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  &-instagram:hover {
+    color: #e95950;
+  }
 }
 </style>

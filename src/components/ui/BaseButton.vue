@@ -20,14 +20,14 @@ export default {
 a {
   font-weight: bold;
   color: #fff;
-  background-color: rgb(217, 0, 255);
+  background-color: rgb(0, 160, 253);
   border-radius: 14px;
-  padding: 0.6rem 1.5rem 0.4rem;
-  margin: 0.83em 0;
+  padding: 0.7rem 2rem;
+  transition: background-color 0.3s ease-out;
 }
 
 a:hover,
 a:active {
-  background-color: rgba(217, 0, 255, 0.616);
+  background-color: rgba(0, 160, 253, 0.616);
 }
 </style>
