@@ -22,7 +22,7 @@ a {
   color: #fff;
   background-color: rgb(0, 160, 253);
   border-radius: 14px;
-  padding: 0.7rem 2rem;
+  padding: 0.7rem 1.3rem;
   transition: background-color 0.3s ease-out;
 }
 
