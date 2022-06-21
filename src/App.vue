@@ -31,7 +31,7 @@ body {
 }
 
 .container {
-  width: 70vw;
-  margin: 0 auto;
+  width: 100vw;
+  padding: 0 9.5rem;
 }
 </style>
