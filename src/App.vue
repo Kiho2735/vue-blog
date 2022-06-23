@@ -2,7 +2,7 @@
   <div class="app">
     <the-header></the-header>
     <router-view></router-view>
-    <the-footer v-if="false"></the-footer>
+    <the-footer></the-footer>
   </div>
 </template>
 
@@ -48,7 +48,6 @@ ui {
 }
 
 .container {
-  max-width: 1440px;
   margin: 0 auto;
 }
 </style>

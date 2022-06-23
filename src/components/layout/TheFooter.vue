@@ -28,7 +28,7 @@
         </ui>
       </div>
     </div>
-    <hr />
+    <hr class="divider" />
     <p class="copy-right">Copyright 2022 All Rights Reserved</p>
   </footer>
 </template>
@@ -39,19 +39,26 @@ export default {};
 
 <style lang="scss" scoped>
 .container {
+  width: 100vw;
+  background-color: rgb(68, 68, 68);
   position: absolute;
   bottom: 0;
   color: #fff;
-  background-color: #333;
-  padding: 3rem 9.5rem;
+}
+
+.nav,
+.divider,
+.copy-right {
+  width: 80vw;
+  margin: 0 auto;
 }
 
 .nav {
+  padding: 2.5rem 0;
   display: flex;
-  margin-bottom: 1rem;
 
-  &__header {
-    margin-right: 3rem;
+  & > div {
+    flex: 1;
   }
 
   &__logo {
@@ -60,10 +67,11 @@ export default {};
 
   &__icons {
     display: flex;
-    justify-content: space-around;
+    justify-content: start;
   }
 
   &__icon {
+    margin: 0 0.4rem;
     color: #fff;
     transition: color 0.3s ease-out;
 
@@ -78,7 +86,6 @@ export default {};
 
   &__list {
     list-style-type: none;
-    // padding-top: 1rem;
   }
 
   &__item a {
@@ -94,7 +101,15 @@ export default {};
   }
 }
 
+.divider {
+  border: none;
+  height: 1px;
+  background-color: rgb(114, 114, 114);
+}
+
 .copy-right {
-  margin-top: 1rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  margin: 0.8rem auto 2rem;
 }
 </style>

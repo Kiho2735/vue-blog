@@ -188,7 +188,7 @@ a {
   &:after {
     content: "";
     width: 100%;
-    height: 4px;
+    height: 2px;
     position: absolute;
     top: 3rem;
     left: 0;
@@ -202,7 +202,7 @@ a {
     &:after {
       content: "";
       width: 100%;
-      height: 4px;
+      height: 2px;
       position: absolute;
       top: 3rem;
       left: 0;
@@ -257,7 +257,7 @@ a {
     a:after {
       content: "";
       width: 100%;
-      height: 4px;
+      height: 2px;
       position: absolute;
       top: 1.7rem;
       left: 0;
