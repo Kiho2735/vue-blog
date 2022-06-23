@@ -1,80 +1,85 @@
 <template>
   <header class="container">
     <nav class="nav">
-      <div class="nav__header">
+      <div class="nav__branding">
         <h1 class="nav__logo">
           <router-link :to="{ name: 'Home' }"> Calm </router-link>
         </h1>
+      </div>
 
-        <div class="nav__menu">
-          <ui class="nav__list">
-            <li class="nav__item">
-              <router-link to="/home">Blog</router-link>
-            </li>
-            <li class="nav__item">
-              <router-link to="/1">About</router-link>
-            </li>
-            <li class="nav__item">
-              <router-link to="/2">Contact</router-link>
-            </li>
-          </ui>
+      <div class="nav__menu">
+        <ui class="nav__list">
+          <li class="nav__item">
+            <router-link to="/home">Blog</router-link>
+          </li>
+          <li class="nav__item">
+            <router-link to="/1">About</router-link>
+          </li>
+          <li class="nav__item">
+            <router-link to="/2">Contact</router-link>
+          </li>
+        </ui>
 
-          <div class="nav__icons">
-            <a href="">
-              <font-awesome-icon
-                :icon="['fab', 'facebook-f']"
-                class="fa-xl nav__icon nav__icon-facebook"
-            /></a>
+        <div class="nav__icon">
+          <a href="" class="nav__icon-facebook">
+            <font-awesome-icon
+              :icon="['fab', 'facebook-f']"
+              class="fa-xl nav__icon"
+          /></a>
 
-            <a href=""
-              ><font-awesome-icon
-                :icon="['fab', 'instagram']"
-                class="fa-xl nav__icon nav__icon-instagram"
-            /></a>
-          </div>
-
-          <base-button to="#">Log In</base-button>
+          <a href="" class="nav__icon-instagram"
+            ><font-awesome-icon
+              :icon="['fab', 'instagram']"
+              class="fa-xl nav__icon"
+          /></a>
         </div>
+
+        <base-button to="#">Log In</base-button>
+      </div>
+
+      <div class="mobile-action-icons">
+        <font-awesome-icon
+          :icon="['fa', 'bars-staggered']"
+          class="fa-xl nav__bar"
+          @click="openNav"
+          v-if="!mobileNav"
+        />
+        <font-awesome-icon
+          :icon="['fa', 'xmark']"
+          class="fa-2xl nav__xbar"
+          @click="openNav"
+          v-else
+        />
       </div>
     </nav>
 
-    <font-awesome-icon
-      :icon="['fa', 'bars-staggered']"
-      class="fa-xl nav__bar"
-      @click="openNav"
-    />
-
     <transition name="mobile-nav">
       <div class="mobile__nav" v-show="mobileNav">
-        <ui class="mobile__nav__list">
-          <li class="mobile__nav__item">
+        <ui class="nav__list">
+          <li class="nav__item">
             <router-link to="/home">Home</router-link>
           </li>
-          <li class="mobile__nav__item">
+          <li class="nav__item">
             <router-link to="/">Blog</router-link>
           </li>
-          <li class="mobile__nav__item">
+          <li class="nav__item">
             <router-link to="/1">About</router-link>
           </li>
-          <li class="mobile__nav__item">
+          <li class="nav__item">
             <router-link to="/2">Contact</router-link>
           </li>
-          <li class="mobile__nav__item">
+          <li class="nav__item">
             <router-link to="/">Log In</router-link>
           </li>
         </ui>
 
-        <div class="mobile__nav__icons">
-          <a href="">
-            <font-awesome-icon
-              :icon="['fab', 'facebook-f']"
-              class="fa-2xl mobile__nav__icon mobile__nav__icon-facebook"
+        <div class="nav__icon">
+          <a href="" class="nav__icon-facebook">
+            <font-awesome-icon :icon="['fab', 'facebook-f']"
           /></a>
 
-          <a href=""
-            ><font-awesome-icon
-              :icon="['fab', 'instagram']"
-              class="fa-2xl mobile__nav__icon mobile__nav__icon-instagram"
+          <a href="" class="nav__icon-instagram"
+            ><font-awesome-icon :icon="['fab', 'instagram']"
           /></a>
         </div>
       </div>
@@ -99,196 +104,174 @@ export default {
 
 <style lang="scss" scoped>
 a {
-  text-decoration: none;
-  color: #000;
+  position: relative;
+  transition: color 0.3s ease;
 }
 
 .nav {
   margin-top: 30px;
+  width: 80vw;
+  display: flex;
+  justify-content: space-between;
 
-  &__header {
+  &__branding {
     display: flex;
-    justify-content: space-between;
-  }
-
-  &__logo {
-    font-size: 1.8rem;
+    align-items: center;
   }
 
   &__menu {
-    display: flex;
-  }
-
-  &__list {
-    list-style: none;
-    display: flex;
-    margin-right: 10px;
-    align-items: center;
-  }
-
-  &__icons {
-    margin-right: 20px;
-    display: flex;
-    align-items: center;
-  }
-}
-
-.nav__item {
-  font-size: 1.1rem;
-  margin-right: 5rem;
-
-  &:last-child {
-    margin-right: 2rem;
-  }
-
-  a {
-    position: relative;
-    transition: color 0.3s ease-out;
-
-    &:hover {
-      color: rgb(0, 160, 253);
-    }
-
-    &.router-link-active {
-      color: rgb(0, 160, 253);
-
-      &:after {
-        content: "";
-        width: 100%;
-        height: 4px;
-        position: absolute;
-        top: 1.8rem;
-        left: 0;
-        background-color: rgb(0, 160, 253);
-      }
-    }
-
-    &:after {
-      content: "";
-      width: 0;
-      height: 4px;
-      position: absolute;
-      top: 1.8rem;
-      left: 0;
-      background-color: rgb(0, 160, 253);
-      transition: all 0.3s;
-    }
-
-    &:hover:after {
-      width: 100%;
-    }
-  }
-}
-
-.nav__icon {
-  padding: 0 0.7rem;
-  transition: color 0.3s ease-out;
-
-  &-facebook:hover {
-    color: #4e71ba;
-  }
-
-  &-instagram:hover {
-    color: #e95950;
-  }
-}
-
-.mobile__nav,
-.nav__bar {
-  display: none;
-}
-
-@media screen and (max-width: 992px) {
-  .nav__header div {
     display: none;
   }
 
-  .nav__bar {
-    display: block;
-    color: #000;
-    font-size: 2.5rem;
-    z-index: 100;
-    position: fixed;
-    right: 50px;
-    top: 35px;
+  .mobile-action-icons {
+    display: flex;
+    align-items: center;
     cursor: pointer;
+    z-index: 100;
+  }
+
+  &__xbar {
+    color: #fff;
+  }
+}
+
+.mobile__nav {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #1d325d;
+  width: 70vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 2rem;
+
+  a {
+    color: #fff;
+  }
+
+  .nav__item {
+    margin-bottom: 1.5rem;
+  }
+
+  .nav__icon {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem;
+
+    &-facebook:hover {
+      color: #4e71ba;
+    }
+
+    &-instagram:hover {
+      color: #e95950;
+    }
+  }
+}
+
+.nav__item a {
+  &:hover {
+    color: rgb(0, 160, 253);
+
+    &:after {
+      background-color: rgba(0, 160, 253, 1);
+    }
+  }
+
+  &:after {
+    content: "";
+    width: 100%;
+    height: 4px;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    background-color: rgba(0, 160, 253, 0);
+    transition: background-color 0.3s ease;
+  }
+
+  &.router-link-active {
+    color: rgb(0, 160, 253);
+
+    &:after {
+      content: "";
+      width: 100%;
+      height: 4px;
+      position: absolute;
+      top: 3rem;
+      left: 0;
+      background-color: rgb(0, 160, 253);
+    }
+  }
+}
+
+.mobile-nav-enter-active,
+.mobile-nav-leave-active {
+  transition: all 0.7s ease;
+}
+
+.mobile-nav-enter-from {
+  transform: translateX(80vw);
+}
+
+.mobile-nav-enter-to {
+  transform: translateX(0);
+}
+
+.mobile-nav-leave-to {
+  transform: translateX(80vw);
+}
+
+@media (min-width: 800px) {
+  .mobile-action-icons {
+    display: none !important;
   }
 
   .mobile__nav {
-    background-color: #1d325d;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
+    display: none;
+  }
+
+  .nav__menu {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+  }
+
+  .nav__list {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav__item {
+    margin-right: 3rem;
+    font-size: 1.1rem;
+
+    &:last-child {
+      margin-right: 2rem;
+    }
+
+    a:after {
+      content: "";
+      width: 100%;
+      height: 4px;
+      position: absolute;
+      top: 1.7rem;
+      left: 0;
+      background-color: rgba(0, 160, 253, 0);
+      transition: background-color 0.3s ease;
+    }
+  }
+
+  .nav__icon {
+    display: flex;
     align-items: center;
 
-    &__list {
-      list-style: none;
-      font-size: 2.5rem;
-    }
-
-    &__item {
-      margin-bottom: 20px;
-
-      a {
-        position: relative;
-        color: #fff;
-        transition: color 0.3s ease-out;
-
-        &:hover {
-          color: rgb(0, 160, 253);
-        }
-
-        &.router-link-active {
-          color: rgb(0, 160, 253);
-
-          &:after {
-            content: "";
-            width: 100%;
-            height: 4px;
-            position: absolute;
-            top: 4rem;
-            left: 0;
-            background-color: rgb(0, 160, 253);
-          }
-        }
-
-        &:after {
-          content: "";
-          width: 0;
-          height: 4px;
-          position: absolute;
-          top: 4rem;
-          left: 0;
-          background-color: rgb(0, 160, 253);
-          transition: all 0.3s;
-        }
-
-        &:hover:after {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  .mobile__nav__icons {
-    position: relative;
-    right: -60px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-  }
-
-  .mobile__nav__icon {
-    color: #fff;
-    transition: color 0.3s ease-out;
-
-    &-facebook {
-      margin-bottom: 20px;
+    a {
+      margin-right: 1rem;
     }
 
     &-facebook:hover {
@@ -299,22 +282,21 @@ a {
       color: #e95950;
     }
   }
+}
 
-  .mobile-nav-enter-active,
-  .mobile-nav-leave-active {
-    transition: all 1s ease;
+@media (min-width: 900px) {
+  .nav__item {
+    margin-right: 5rem;
+
+    &:last-child {
+      margin-right: 4rem;
+    }
   }
 
-  .mobile-nav-enter {
-    transform: translateX(100vw);
-  }
-
-  .mobile-nav-enter-to {
-    transform: translateX(0);
-  }
-
-  .mobile-nav-leave-to {
-    transform: translateX(100vw);
+  .nav__icon {
+    a {
+      margin-right: 3rem;
+    }
   }
 }
 </style>

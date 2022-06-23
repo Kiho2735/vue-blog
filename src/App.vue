@@ -1,7 +1,9 @@
 <template>
-  <the-header></the-header>
-  <router-view></router-view>
-  <the-footer></the-footer>
+  <div class="app">
+    <the-header></the-header>
+    <router-view></router-view>
+    <the-footer v-if="false"></the-footer>
+  </div>
 </template>
 
 <script>
@@ -16,7 +18,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&display=swap");
 
 * {
@@ -30,8 +32,23 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+ui {
+  list-style: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .container {
-  width: 100vw;
-  padding: 0 9.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 </style>
