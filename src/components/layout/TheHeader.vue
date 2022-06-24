@@ -110,6 +110,7 @@ a {
 
 .nav {
   margin-top: 30px;
+  margin-bottom: 30px;
   width: 80vw;
   display: flex;
   justify-content: space-between;
@@ -252,6 +253,20 @@ a {
 
     &:last-child {
       margin-right: 2rem;
+    }
+
+    a.router-link-active {
+      color: rgb(0, 160, 253);
+
+      &:after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        top: 1.7rem;
+        left: 0;
+        background-color: rgb(0, 160, 253);
+      }
     }
 
     a:after {

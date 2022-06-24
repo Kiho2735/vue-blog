@@ -41,8 +41,6 @@ export default {};
 .container {
   width: 100vw;
   background-color: rgb(68, 68, 68);
-  position: absolute;
-  bottom: 0;
   color: #fff;
 }
 
@@ -54,8 +52,10 @@ export default {};
 }
 
 .nav {
-  padding: 2.5rem 0;
+  padding: 2.5rem 0 2rem;
   display: flex;
+  flex-direction: column; //
+  align-items: center; //
 
   & > div {
     flex: 1;
@@ -85,18 +85,23 @@ export default {};
   }
 
   &__list {
-    list-style-type: none;
+    width: 60vw; //
+    margin-top: 1.5rem; //
+    display: flex; //
+    justify-content: space-between; //
   }
 
-  &__item a {
-    font-size: 1.4rem;
-    color: #fff;
-    text-decoration: none;
-    padding-bottom: 1rem;
-    transition: color 0.3s ease-out;
+  &__item {
+    a {
+      font-size: 1.4rem;
+      color: #fff;
+      text-decoration: none;
+      padding-bottom: 1rem;
+      transition: color 0.3s ease-out;
 
-    &:hover {
-      color: rgb(0, 160, 253);
+      &:hover {
+        color: rgb(0, 160, 253);
+      }
     }
   }
 }
@@ -111,5 +116,19 @@ export default {};
   font-size: 0.8rem;
   font-weight: 300;
   margin: 0.8rem auto 2rem;
+}
+
+@media (min-width: 475px) {
+  .nav {
+    padding: 2.5rem 0;
+    flex-direction: row;
+    align-items: initial;
+
+    &__list {
+      width: 100%;
+      margin-top: 0;
+      flex-direction: column;
+    }
+  }
 }
 </style>
