@@ -1,7 +1,11 @@
-<template>s</template>
+<template>
+  {{ title }}
+</template>
 
 <script>
-export default {};
+export default {
+  props: ["title", "priviewImage", "date"],
+};
 </script>
 
 <style></style>

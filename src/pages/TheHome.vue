@@ -18,16 +18,43 @@
       </div>
     </div>
     <div class="recent__blog">
-      <blog-list></blog-list>
+      <blog-list :blogList="blogList"> <h2>Recent Blogs</h2> </blog-list>
     </div>
   </div>
 </template>
 
 <script>
 import BlogList from "../components/blog/BlogList.vue";
+
 export default {
   components: {
     BlogList,
+  },
+  data() {
+    return {
+      blogList: [
+        {
+          title: "First Blog",
+          previewImage: "",
+          date: new Date().toLocaleDateString(),
+        },
+        {
+          title: "Second Blog",
+          previewImage: "",
+          date: new Date().toLocaleDateString(),
+        },
+        {
+          title: "Third Blog",
+          previewImage: "",
+          date: new Date().toLocaleDateString(),
+        },
+        {
+          title: "Fourth Blog",
+          previewImage: "",
+          date: new Date().toLocaleDateString(),
+        },
+      ],
+    };
   },
 };
 </script>
