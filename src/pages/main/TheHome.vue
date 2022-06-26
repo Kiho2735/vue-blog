@@ -2,14 +2,16 @@
   <div class="container">
     <div class="welcome">
       <div class="welcome__msg">
-        <h2 class="welcome__title">WELCOME</h2>
-        <p class="welcome__introduce">
-          This is a personal blog. You can explore many interesting types of
-          blog posts.
-        </p>
-        <router-link to="#" class="welcome__link"
-          >EXPLORE BLOGS <font-awesome-icon :icon="['fa', 'arrow-right']"
-        /></router-link>
+        <div class="welcome__content">
+          <h2 class="welcome__title">WELCOME</h2>
+          <p class="welcome__introduce">
+            This is a personal blog. You can explore many interesting types of
+            blog posts.
+          </p>
+          <router-link to="#" class="welcome__link"
+            >EXPLORE BLOGS <font-awesome-icon :icon="['fa', 'arrow-right']"
+          /></router-link>
+        </div>
       </div>
       <div class="welcome__img">
         <img src="../../assets/welcomeImage.jpg" alt="welcomeImage" />
@@ -89,21 +91,28 @@ export default {};
 @media (min-width: 700px) {
   .welcome {
     flex-direction: row;
+    justify-content: center;
+    width: 100vw;
+    height: 600px;
 
     &__msg {
       order: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0 4rem;
-      width: 50vw;
+      align-items: center;
+      padding: 0 5rem;
+      flex: 1;
     }
 
     &__img {
       order: 2;
+      flex: 1.5;
+      max-height: none;
 
       img {
-        max-width: 600px;
+        height: 100%;
+        width: 100%;
       }
     }
   }
