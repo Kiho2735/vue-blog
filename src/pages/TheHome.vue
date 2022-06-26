@@ -14,15 +14,22 @@
         </div>
       </div>
       <div class="welcome__img">
-        <img src="../../assets/welcomeImage.jpg" alt="welcomeImage" />
+        <img src="../assets/welcomeImage.jpg" alt="welcomeImage" />
       </div>
     </div>
-    <div class="recent__blog"></div>
+    <div class="recent__blog">
+      <blog-list></blog-list>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import BlogList from "../components/blog/BlogList.vue";
+export default {
+  components: {
+    BlogList,
+  },
+};
 </script>
 
 <style lang="scss" scoped>
