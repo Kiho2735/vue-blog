@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="recent__blog">
-      <blog-list :blogList="blogList"> <h2>Recent Blogs</h2> </blog-list>
+      <blog-list :blogList="blogList"> Recent Blogs </blog-list>
     </div>
   </div>
 </template>
@@ -35,22 +35,22 @@ export default {
       blogList: [
         {
           title: "First Blog",
-          previewImage: "",
+          previewImage: "preview1",
           date: new Date().toLocaleDateString(),
         },
         {
           title: "Second Blog",
-          previewImage: "",
+          previewImage: "preview2",
           date: new Date().toLocaleDateString(),
         },
         {
           title: "Third Blog",
-          previewImage: "",
+          previewImage: "preview3",
           date: new Date().toLocaleDateString(),
         },
         {
           title: "Fourth Blog",
-          previewImage: "",
+          previewImage: "preview4",
           date: new Date().toLocaleDateString(),
         },
       ],

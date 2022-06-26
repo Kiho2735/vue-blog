@@ -5,6 +5,8 @@ import {
   faBarsStaggered,
   faXmark,
   faArrowRight,
+  faPenToSquare,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 // import { fafac } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -12,8 +14,11 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 // Font Awesome
 library.add(faFacebookF);
 library.add(faInstagram);
+
 library.add(faBarsStaggered);
 library.add(faXmark);
 library.add(faArrowRight);
+library.add(faPenToSquare);
+library.add(faTrash);
 
 export default FontAwesomeIcon;
