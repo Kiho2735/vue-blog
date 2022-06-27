@@ -67,7 +67,7 @@ export default {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .recent-blog-card {
     grid-template-columns: repeat(4, 1fr);
   }

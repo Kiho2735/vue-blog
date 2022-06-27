@@ -71,6 +71,12 @@ export default {
   }
 }
 
+@media (min-width: 1600px) {
+  .blog-card {
+    max-width: 350px;
+  }
+}
+
 .action-icons {
   position: absolute;
   top: 10px;
