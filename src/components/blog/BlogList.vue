@@ -72,8 +72,7 @@ export default {
 
 @media (min-width: 1200px) {
   .recent-blog-card {
-    display: flex;
-    flex-direction: row;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 </style>

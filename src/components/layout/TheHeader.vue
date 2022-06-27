@@ -53,6 +53,8 @@
       </div>
     </nav>
 
+    <div class="mobileBackground" v-show="mobileNav"></div>
+
     <transition name="mobile-nav">
       <div class="mobile__nav" v-show="mobileNav">
         <ui class="nav__list">
@@ -108,9 +110,16 @@ a {
   transition: color 0.3s ease;
 }
 
+.container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  background-color: #fff;
+  z-index: 100;
+}
+
 .nav {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin: 20px auto;
   width: 80vw;
   display: flex;
   justify-content: space-between;
@@ -134,6 +143,16 @@ a {
   &__xbar {
     color: #fff;
   }
+}
+
+.mobileBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #e0e0e0;
+  opacity: 0.5;
 }
 
 .mobile__nav {
@@ -234,6 +253,10 @@ a {
     display: none !important;
   }
 
+  .mobileBackground {
+    display: none;
+  }
+
   .mobile__nav {
     display: none;
   }
@@ -249,7 +272,7 @@ a {
 
   .nav__item {
     margin-right: 3rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
 
     &:last-child {
       margin-right: 2rem;
@@ -263,7 +286,7 @@ a {
         width: 100%;
         height: 2px;
         position: absolute;
-        top: 1.7rem;
+        top: 1.5rem;
         left: 0;
         background-color: rgb(0, 160, 253);
       }
@@ -274,7 +297,7 @@ a {
       width: 100%;
       height: 2px;
       position: absolute;
-      top: 1.7rem;
+      top: 1.5rem;
       left: 0;
       background-color: rgba(0, 160, 253, 0);
       transition: background-color 0.3s ease;
@@ -289,28 +312,38 @@ a {
       margin-right: 1rem;
     }
 
+    &-facebook,
+    &-instagram {
+      width: 35px;
+      height: 35px;
+      background-color: #fff;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
     &-facebook:hover {
-      color: #4e71ba;
+      background-color: #4e71ba;
+      color: #fff;
     }
 
     &-instagram:hover {
-      color: #e95950;
+      background-color: #e95950;
+      color: #fff;
     }
   }
 }
 
 @media (min-width: 900px) {
   .nav__item {
-    margin-right: 5rem;
-
-    &:last-child {
-      margin-right: 4rem;
-    }
+    margin-right: 3rem;
   }
 
   .nav__icon {
     a {
-      margin-right: 3rem;
+      margin-right: 1rem;
     }
   }
 }
