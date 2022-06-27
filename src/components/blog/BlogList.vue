@@ -30,13 +30,13 @@ export default {
 
 <style lang="scss" scoped>
 .title {
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 300;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .blog-card-container {
-  background-color: #c8c8c8;
+  background-color: #e0e0e0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,9 +50,6 @@ export default {
 .recent-blog-card {
   display: flex;
   flex-direction: column;
-  //   display: grid;
-  //   gap: 32px;
-  //   grid-template-columns: 1fr;
 }
 
 @media (min-width: 700px) {
