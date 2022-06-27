@@ -3,10 +3,10 @@
     <div class="welcome">
       <div class="welcome__msg">
         <div class="welcome__content">
-          <h2 class="welcome__title">WELCOME</h2>
+          <h2 class="welcome__title">WELCOME!</h2>
           <p class="welcome__introduce">
             This is a personal blog. You can explore many interesting types of
-            blog posts.
+            blog posts. If you want to share your journey, please sign up now!
           </p>
           <router-link to="#" class="welcome__link"
             >EXPLORE BLOGS <font-awesome-icon :icon="['fa', 'arrow-right']"
@@ -149,6 +149,12 @@ export default {
         width: 100%;
       }
     }
+  }
+}
+
+@media (min-width: 950px) {
+  .welcome__msg {
+    padding-left: 10%;
   }
 }
 </style>
