@@ -54,4 +54,26 @@ export default {
   //   gap: 32px;
   //   grid-template-columns: 1fr;
 }
+
+@media (min-width: 700px) {
+  .recent-blog-card {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .recent-blog-card {
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .recent-blog-card {
+    display: flex;
+    flex-direction: row;
+  }
+}
 </style>

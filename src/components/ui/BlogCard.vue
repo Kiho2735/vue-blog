@@ -33,6 +33,39 @@ export default {
   font-weight: 300;
   max-width: 400px;
   margin-bottom: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+}
+
+@media (min-width: 700px) {
+  .blog-card {
+    max-width: 275px;
+  }
+}
+
+@media (min-width: 800px) {
+  .blog-card {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 900px) {
+  .blog-card {
+    max-width: 350px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .blog-card {
+    max-width: 275px;
+  }
 }
 
 .action-icons {
@@ -56,18 +89,20 @@ export default {
   }
 
   &__edit {
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
-      color: rgb(0, 160, 253);
+      background-color: rgb(0, 160, 253);
+      color: #fff;
     }
   }
 
   &__delete {
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 
     &:hover {
-      color: #f73b3b;
+      background-color: #f73b3b;
+      color: #fff;
     }
   }
 }
