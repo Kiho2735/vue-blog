@@ -9,6 +9,9 @@
           <font-awesome-icon :icon="['fa', 'trash']" />
         </div>
       </div>
+      <div class="favorite-icon">
+        <font-awesome-icon :icon="['fa', 'star']" />
+      </div>
       <div class="preview-image">
         <img :src="require(`../../assets/${previewImage}.jpg`)" alt="" />
       </div>
@@ -115,6 +118,27 @@ export default {
     object-fit: cover;
     width: 100%;
     height: 100%;
+  }
+}
+
+.favorite-icon {
+  background-color: #fff;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  bottom: 120px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 1;
+  color: #000;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #faf31d;
+    color: #fff;
   }
 }
 

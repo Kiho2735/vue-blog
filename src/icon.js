@@ -7,6 +7,7 @@ import {
   faArrowRight,
   faPenToSquare,
   faTrash,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 // import { fafac } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -20,5 +21,6 @@ library.add(faXmark);
 library.add(faArrowRight);
 library.add(faPenToSquare);
 library.add(faTrash);
+library.add(faStar);
 
 export default FontAwesomeIcon;
