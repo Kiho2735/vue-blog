@@ -20,6 +20,14 @@
     <div class="recent__blog">
       <blog-list :blogList="blogList"> Recent Blogs </blog-list>
     </div>
+    <div class="register__section">
+      <div class="container">
+        <h2>Register now and Share your story!</h2>
+        <router-link to="#"
+          >Register Now <font-awesome-icon :icon="['fa', 'arrow-right']"
+        /></router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -105,6 +113,41 @@ export default {
   }
 }
 
+.register__section {
+  .container {
+    text-transform: uppercase;
+    width: 80vw;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    max-width: 400px;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  a {
+    text-align: center;
+    color: #fff;
+    padding: 0.5rem;
+    width: 200px;
+    background-color: #000;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgb(93, 93, 93);
+    }
+  }
+}
+
 @media (min-width: 440px) {
   .welcome {
     &__msg {
@@ -150,11 +193,48 @@ export default {
       }
     }
   }
+
+  .register__section {
+    .container {
+      flex-direction: row;
+      padding: 5rem 0;
+      justify-content: space-between;
+    }
+
+    h2 {
+      font-size: 2rem;
+      text-align: initial;
+      margin-bottom: 0;
+      max-width: 300px;
+    }
+
+    a {
+      padding: 0.6rem;
+      width: 150px;
+      font-size: 1.2rem;
+    }
+  }
 }
 
 @media (min-width: 950px) {
   .welcome__msg {
     padding-left: 10%;
+  }
+
+  .register__section {
+    .container {
+      padding: 10rem 0;
+    }
+
+    h2 {
+      font-size: 3rem;
+      max-width: 500px;
+    }
+
+    a {
+      width: 200px;
+      font-size: 1.5rem;
+    }
   }
 }
 </style>
