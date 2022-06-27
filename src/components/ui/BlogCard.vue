@@ -1,20 +1,22 @@
 <template>
   <div class="blog-card">
-    <div class="action-icons">
-      <div class="action-icon">
-        <font-awesome-icon :icon="['fa', 'pen-to-square']" />
+    <router-link to="#">
+      <div class="action-icons">
+        <div class="action-icon action-icon__edit">
+          <font-awesome-icon :icon="['fa', 'pen-to-square']" />
+        </div>
+        <div class="action-icon action-icon__delete">
+          <font-awesome-icon :icon="['fa', 'trash']" />
+        </div>
       </div>
-      <div class="action-icon">
-        <font-awesome-icon :icon="['fa', 'trash']" />
+      <div class="preview-image">
+        <img :src="require(`../../assets/${previewImage}.jpg`)" alt="" />
       </div>
-    </div>
-    <div class="preview-image">
-      <img :src="require(`../../assets/${previewImage}.jpg`)" alt="" />
-    </div>
-    <div class="info">
-      <p class="info__title">{{ title }}</p>
-      <p class="info__date">Posted on: {{ date }}</p>
-    </div>
+      <div class="info">
+        <p class="info__title">{{ title }}</p>
+        <p class="info__date">Posted on: {{ date }}</p>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -29,6 +31,8 @@ export default {
   position: relative;
   font-size: 1.3rem;
   font-weight: 300;
+  max-width: 400px;
+  margin-bottom: 1rem;
 }
 
 .action-icons {
@@ -49,6 +53,22 @@ export default {
 
   &:first-child {
     margin-right: 0.3rem;
+  }
+
+  &__edit {
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: rgb(0, 160, 253);
+    }
+  }
+
+  &__delete {
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #f73b3b;
+    }
   }
 }
 

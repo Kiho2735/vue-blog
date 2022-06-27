@@ -3,18 +3,16 @@
     <div>
       <h2 class="title"><slot> </slot></h2>
 
-      <router-link to="#">
-        <div class="recent-blog-card">
-          <blog-card
-            v-for="(blog, index) in blogList"
-            :key="index"
-            :title="blog.title"
-            :previewImage="blog.previewImage"
-            :date="blog.date"
-          >
-          </blog-card>
-        </div>
-      </router-link>
+      <div class="recent-blog-card">
+        <blog-card
+          v-for="(blog, index) in blogList"
+          :key="index"
+          :title="blog.title"
+          :previewImage="blog.previewImage"
+          :date="blog.date"
+        >
+        </blog-card>
+      </div>
     </div>
   </div>
 </template>
@@ -38,7 +36,6 @@ export default {
 }
 
 .blog-card-container {
-  width: 100vw;
   background-color: #c8c8c8;
   display: flex;
   justify-content: center;
@@ -47,12 +44,12 @@ export default {
 
   div {
     width: 80vw;
-    display: flex;
-    flex-direction: column;
   }
 }
 
 .recent-blog-card {
+  display: flex;
+  flex-direction: column;
   //   display: grid;
   //   gap: 32px;
   //   grid-template-columns: 1fr;
