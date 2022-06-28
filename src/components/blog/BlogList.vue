@@ -1,7 +1,7 @@
 <template>
   <div class="blog-card-container">
     <div>
-      <h2 class="title"><slot> </slot></h2>
+      <h2 class="title"><slot> Entire Blogs </slot></h2>
 
       <div class="recent-blog-card">
         <blog-card

@@ -10,7 +10,7 @@
       <div class="nav__menu">
         <ui class="nav__list">
           <li class="nav__item">
-            <router-link to="/home">Blog</router-link>
+            <router-link :to="{ name: 'Blog' }">Blog</router-link>
           </li>
           <li class="nav__item">
             <router-link to="/1">About</router-link>
@@ -59,10 +59,10 @@
       <div class="mobile__nav" v-show="mobileNav">
         <ui class="nav__list">
           <li class="nav__item">
-            <router-link to="/home">Home</router-link>
+            <router-link :to="{ name: 'Home' }">Home</router-link>
           </li>
           <li class="nav__item">
-            <router-link to="/">Blog</router-link>
+            <router-link :to="{ name: 'Blog' }">Blog</router-link>
           </li>
           <li class="nav__item">
             <router-link to="/1">About</router-link>
