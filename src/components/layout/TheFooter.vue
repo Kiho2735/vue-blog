@@ -54,8 +54,8 @@ export default {};
 .nav {
   padding: 2.5rem 0 2rem;
   display: flex;
-  flex-direction: column; //
-  align-items: center; //
+  flex-direction: column;
+  align-items: center;
 
   & > div {
     flex: 1;
@@ -85,10 +85,10 @@ export default {};
   }
 
   &__list {
-    width: 60vw; //
-    margin-top: 1.5rem; //
-    display: flex; //
-    justify-content: space-between; //
+    width: 60vw;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
   }
 
   &__item {

@@ -8,12 +8,31 @@ import NotFound from "./pages/NotFound.vue";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: "/", redirect: "/home" },
-    { path: "/home", name: "Home", component: TheHome },
-    { path: "/blog", name: "Blog", component: EntireBlogs },
+    { path: "/", name: "Home", component: TheHome, meta: { title: "Home" } },
+    {
+      path: "/blog",
+      name: "Blog",
+      component: EntireBlogs,
+      meta: { title: "Blog" },
+    },
     { path: "/login", component: UserAuth },
-    { path: "/:notFound(.*)", component: NotFound },
+    {
+      path: "/:notFound(.*)",
+      component: NotFound,
+      meta: { title: "Not Found" },
+    },
   ],
+  scrollBehavior(_, _2, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { left: 0, top: 0 };
+  },
+});
+
+router.beforeEach((to, _, next) => {
+  document.title = `${to.meta.title} | Calm`;
+  next();
 });
 
 export default router;

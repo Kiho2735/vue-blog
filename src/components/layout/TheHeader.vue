@@ -71,7 +71,7 @@
             <router-link to="/2">Contact</router-link>
           </li>
           <li class="nav__item">
-            <router-link to="/">Log In</router-link>
+            <router-link to="/3">Log In</router-link>
           </li>
         </ui>
 
@@ -111,11 +111,8 @@ a {
 }
 
 .container {
-  position: fixed;
-  top: 0;
   width: 100vw;
   background-color: #fff;
-  z-index: 100;
 }
 
 .nav {
@@ -153,6 +150,7 @@ a {
   height: 100vh;
   background-color: #e0e0e0;
   opacity: 0.5;
+  z-index: 99;
 }
 
 .mobile__nav {

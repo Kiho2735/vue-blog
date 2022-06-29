@@ -10,7 +10,7 @@
 <style lang="scss" scoped>
 section {
   height: 80vh;
-  padding: 6rem 8rem;
+  padding-left: 3rem;
   font-size: 2rem;
 }
 
