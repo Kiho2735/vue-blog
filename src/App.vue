@@ -1,8 +1,8 @@
 <template>
   <div class="app">
-    <the-header></the-header>
+    <the-header v-if="!navigationDisabled"></the-header>
     <router-view></router-view>
-    <the-footer></the-footer>
+    <the-footer v-if="!navigationDisabled"></the-footer>
   </div>
 </template>
 
@@ -14,6 +14,26 @@ export default {
   components: {
     TheHeader,
     TheFooter,
+  },
+  data() {
+    return {
+      navigationDisabled: null,
+    };
+  },
+  methods: {
+    checkRoute() {
+      const routeName = this.$route.name;
+      if (routeName == "Not Found" || routeName == "Login") {
+        this.navigationDisabled = true;
+      } else {
+        this.navigationDisabled = false;
+      }
+    },
+  },
+  watch: {
+    $route() {
+      this.checkRoute();
+    },
   },
 };
 </script>

@@ -15,9 +15,15 @@ const router = createRouter({
       component: EntireBlogs,
       meta: { title: "Blog" },
     },
-    { path: "/login", component: UserAuth },
+    {
+      path: "/login",
+      name: "Login",
+      component: UserAuth,
+      meta: { title: "Login" },
+    },
     {
       path: "/:notFound(.*)",
+      name: "Not Found",
       component: NotFound,
       meta: { title: "Not Found" },
     },

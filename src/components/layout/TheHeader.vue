@@ -34,7 +34,7 @@
           /></a>
         </div>
 
-        <base-button to="#">Log In</base-button>
+        <base-button :to="{ name: 'Login' }">Log In</base-button>
       </div>
 
       <div class="mobile-action-icons">
