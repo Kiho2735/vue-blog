@@ -2,8 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import TheHome from "./pages/TheHome.vue";
 import EntireBlogs from "./pages/EntireBlogs.vue";
-import UserAuth from "./pages/UserAuth.vue";
-import UserRegistration from "./pages/UserRegistration.vue";
+import UserAuth from "./pages/auth/UserAuth.vue";
+import UserRegistration from "./pages/auth/UserRegistration.vue";
+import ResetPassword from "./pages/auth/ResetPassword.vue";
 import NotFound from "./pages/NotFound.vue";
 
 const router = createRouter({
@@ -27,6 +28,12 @@ const router = createRouter({
       name: "Register",
       component: UserRegistration,
       meta: { title: "Register" },
+    },
+    {
+      path: "/resetPassword",
+      name: "Reset Password",
+      component: ResetPassword,
+      meta: { title: "Reset Password" },
     },
     {
       path: "/:notFound(.*)",

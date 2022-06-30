@@ -26,7 +26,8 @@ export default {
       if (
         routeName == "Not Found" ||
         routeName == "Login" ||
-        routeName == "Register"
+        routeName == "Register" ||
+        routeName == "Reset Password"
       ) {
         this.navigationDisabled = true;
       } else {
