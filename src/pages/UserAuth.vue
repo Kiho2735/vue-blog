@@ -41,10 +41,10 @@
         />
         <p v-if="password.isEmpty">Please enter password.</p>
       </div>
-      <p class="form-wrapper__register">
+      <p class="form-wrapper__login-register">
         Forgot your <router-link to="#">username</router-link> or
         <router-link to="#">password</router-link>? |
-        <router-link to="#">Register</router-link>
+        <router-link :to="{ name: 'Register' }">Register</router-link>
       </p>
       <button class="submit-btn">Sign In</button>
     </form>
@@ -123,7 +123,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .form-wrapper {
   display: flex;
   flex-direction: column;
@@ -186,7 +186,7 @@ export default {
     }
   }
 
-  &__register {
+  &__login-register {
     font-size: 1rem;
     text-align: center;
     color: rgb(161, 161, 161);

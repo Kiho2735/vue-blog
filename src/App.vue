@@ -23,7 +23,11 @@ export default {
   methods: {
     checkRoute() {
       const routeName = this.$route.name;
-      if (routeName == "Not Found" || routeName == "Login") {
+      if (
+        routeName == "Not Found" ||
+        routeName == "Login" ||
+        routeName == "Register"
+      ) {
         this.navigationDisabled = true;
       } else {
         this.navigationDisabled = false;

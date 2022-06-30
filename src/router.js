@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import TheHome from "./pages/TheHome.vue";
 import EntireBlogs from "./pages/EntireBlogs.vue";
 import UserAuth from "./pages/UserAuth.vue";
+import UserRegistration from "./pages/UserRegistration.vue";
 import NotFound from "./pages/NotFound.vue";
 
 const router = createRouter({
@@ -20,6 +21,12 @@ const router = createRouter({
       name: "Login",
       component: UserAuth,
       meta: { title: "Login" },
+    },
+    {
+      path: "/register",
+      name: "Register",
+      component: UserRegistration,
+      meta: { title: "Register" },
     },
     {
       path: "/:notFound(.*)",

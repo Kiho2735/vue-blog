@@ -10,6 +10,7 @@ import {
   faStar,
   faUser,
   faLock,
+  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 // import { fafac } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -26,5 +27,6 @@ library.add(faTrash);
 library.add(faStar);
 library.add(faUser);
 library.add(faLock);
+library.add(faEnvelope);
 
 export default FontAwesomeIcon;
