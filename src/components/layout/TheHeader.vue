@@ -71,7 +71,7 @@
             <router-link to="/2">Contact</router-link>
           </li>
           <li class="nav__item">
-            <router-link to="/3">Log In</router-link>
+            <router-link :to="{ name: 'Login' }">Log In</router-link>
           </li>
         </ui>
 

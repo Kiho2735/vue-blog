@@ -6,6 +6,8 @@
     Loading...
   </base-dialog> -->
 
+  <base-loading v-show="false"></base-loading>
+
   <base-dialog :show="false" :isSucceed="true" title="Success">
     Welcome! name...
   </base-dialog>
