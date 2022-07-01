@@ -2,12 +2,13 @@
   <teleport to="body">
     <div @click="close" class="backdrop" v-if="show"></div>
     <transition name="dialog">
-      <dialog open v-if="show">
-        <header>
+      <dialog open v-if="show" class="modal">
+        <header class="title" :class="succeed">
           <h2>{{ title }}</h2>
         </header>
+        <hr />
 
-        <section>
+        <section class="description">
           <slot></slot>
         </section>
 
@@ -30,8 +31,17 @@ export default {
       type: String,
       required: true,
     },
+    isSucceed: {
+      type: Boolean,
+      required: true,
+    },
   },
   emits: ["close"],
+  computed: {
+    succeed() {
+      return this.isSucceed ? "success" : "failure";
+    },
+  },
   methods: {
     close() {
       this.$emit("close");
@@ -40,15 +50,59 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #2020202d;
-  z-index: -100;
+  background-color: rgba(58, 58, 58, 0.7);
+  z-index: 10;
+}
+
+.modal {
+  position: fixed;
+  top: 20vh;
+  left: 10%;
+  width: 80%;
+  z-index: 100;
+  padding: 2rem;
+  border: none;
+  border-radius: 15px;
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .success {
+    color: rgb(66, 186, 150);
+  }
+
+  .failure {
+    color: #a82e2e;
+  }
+
+  .description {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  menu {
+    display: flex;
+    justify-content: end;
+
+    button {
+      border: none;
+      color: #fff;
+      background-color: #000;
+      border-radius: 10px;
+      width: 25%;
+      font-size: 1.2rem;
+      padding: 0.5rem;
+    }
+  }
 }
 
 .dialog-enter-from,

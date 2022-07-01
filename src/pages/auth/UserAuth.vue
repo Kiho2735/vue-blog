@@ -1,9 +1,16 @@
 <template>
-  <base-dialog :show="!!error" title="Error" @close="closeDialog">
+  <!-- <base-dialog :show="!!error" title="Error" @close="closeDialog">
     <p>{{ error }}</p>
   </base-dialog>
   <base-dialog :show="isLoading" title="Authenticating...">
     Loading...
+  </base-dialog> -->
+
+  <base-dialog :show="false" :isSucceed="true" title="Success">
+    Welcome! name...
+  </base-dialog>
+  <base-dialog :show="false" :isSucceed="false" title="Failure">
+    Please check your email or password.
   </base-dialog>
 
   <div class="form-wrapper">

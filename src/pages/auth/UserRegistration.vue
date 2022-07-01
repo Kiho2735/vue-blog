@@ -40,7 +40,7 @@
           id="id"
           v-model.trim="userId.val"
           @blur="validateId"
-          placeholder="Email"
+          placeholder="Email (Username)"
           :class="redBorderColorId"
         />
         <p v-if="userId.isEmpty">Please enter email.</p>

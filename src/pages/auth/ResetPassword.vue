@@ -10,7 +10,7 @@
       </div>
 
       <div class="form-control">
-        <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+        <font-awesome-icon :icon="['fa', 'envelope']" class="icon" />
         <input
           type="email"
           id="id"
