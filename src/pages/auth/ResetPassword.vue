@@ -20,7 +20,7 @@
           :class="redBorderColor"
         />
         <p v-if="email.isEmpty">Please enter email.</p>
-        <p v-else-if="email.isValid">Please enter valid email.</p>
+        <p v-else-if="email.isInvalid">Please enter valid email.</p>
       </div>
 
       <p class="form-wrapper__login-register">
@@ -39,26 +39,26 @@ export default {
       email: {
         val: "",
         isEmpty: false,
-        isValid: false,
+        isInvalid: false,
       },
     };
   },
   computed: {
     redBorderColor() {
-      return { redBorder: this.email.isEmpty || this.email.isValid };
+      return { redBorder: this.email.isEmpty || this.email.isInvalid };
     },
   },
   methods: {
     validateEmail() {
       if (this.email.val == "") {
         this.email.isEmpty = true;
-        this.email.isValid = false;
+        this.email.isInvalid = false;
       } else if (!this.email.val.includes("@")) {
         this.email.isEmpty = false;
-        this.email.isValid = true;
+        this.email.isInvalid = true;
       } else {
         this.email.isEmpty = false;
-        this.email.isValid = false;
+        this.email.isInvalid = false;
       }
     },
   },

@@ -33,10 +33,10 @@
           v-model.trim="userId.val"
           @blur="validateId"
           placeholder="Email"
-          :class="redBorderColorId"
+          :class="warningId"
         />
         <p v-if="userId.isEmpty">Please enter email.</p>
-        <p v-else-if="userId.isValid">Please enter valid email.</p>
+        <p v-else-if="userId.isInvalid">Please enter valid email.</p>
       </div>
       <div class="form-control">
         <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
@@ -46,7 +46,7 @@
           v-model.trim="password.val"
           @blur="validatePassword"
           placeholder="Password"
-          :class="redBorderColorPassword"
+          :class="warningPassword"
         />
         <p v-if="password.isEmpty">Please enter password.</p>
       </div>
@@ -67,7 +67,7 @@ export default {
       userId: {
         val: "",
         isEmpty: false,
-        isValid: false,
+        isInvalid: false,
       },
       password: {
         val: "",
@@ -78,10 +78,10 @@ export default {
     };
   },
   computed: {
-    redBorderColorId() {
-      return { redBorder: this.userId.isEmpty || this.userId.isValid };
+    warningId() {
+      return { redBorder: this.userId.isEmpty || this.userId.isInvalid };
     },
-    redBorderColorPassword() {
+    warningPassword() {
       return { redBorder: this.password.isEmpty };
     },
   },
@@ -109,13 +109,13 @@ export default {
     validateId() {
       if (this.userId.val == "") {
         this.userId.isEmpty = true;
-        this.userId.isValid = false;
+        this.userId.isInvalid = false;
       } else if (!this.userId.val.includes("@")) {
         this.userId.isEmpty = false;
-        this.userId.isValid = true;
+        this.userId.isInvalid = true;
       } else {
         this.userId.isEmpty = false;
-        this.userId.isValid = false;
+        this.userId.isInvalid = false;
       }
     },
     validatePassword() {

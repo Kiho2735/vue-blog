@@ -16,7 +16,7 @@
           v-model.trim="firstName.val"
           @blur="validateFirstName"
           placeholder="First Name"
-          :class="redBorderColorFirstName"
+          :class="warningFirstName"
         />
         <p v-if="firstName.isEmpty">Please enter first name.</p>
       </div>
@@ -28,7 +28,7 @@
           v-model.trim="lastName.val"
           @blur="validateLastName"
           placeholder="Last Name"
-          :class="redBorderColorLastName"
+          :class="warningLastName"
         />
         <p v-if="lastName.isEmpty">Please enter last name.</p>
       </div>
@@ -41,10 +41,10 @@
           v-model.trim="userId.val"
           @blur="validateId"
           placeholder="Email (Username)"
-          :class="redBorderColorId"
+          :class="warningId"
         />
         <p v-if="userId.isEmpty">Please enter email.</p>
-        <p v-else-if="userId.isValid">Please enter valid email.</p>
+        <p v-else-if="userId.isInvalid">Please enter valid email.</p>
       </div>
 
       <div class="form-control">
@@ -55,7 +55,7 @@
           v-model.trim="password.val"
           @blur="validatePassword"
           placeholder="Password"
-          :class="redBorderColorPassword"
+          :class="warningPassword"
         />
         <p v-if="password.isEmpty">Please enter password.</p>
       </div>
@@ -68,9 +68,9 @@
           v-model.trim="confirmPassword.val"
           @blur="validateConfirmPassword"
           placeholder="Confirm Password"
-          :class="redBorderColorConfirmPassword"
+          :class="warningConfirmPassword"
         />
-        <p v-if="confirmPassword.isValid">Please enter the same password.</p>
+        <p v-if="confirmPassword.isInvalid">Please enter the same password.</p>
       </div>
 
       <p class="form-wrapper__login-register">
@@ -83,6 +83,10 @@
 </template>
 
 <script>
+// import firebase from "firebase/app";
+// import "firebase/auth";
+// import db from "../firebase/firebase.js";
+
 export default {
   data() {
     return {
@@ -97,7 +101,7 @@ export default {
       userId: {
         val: "",
         isEmpty: false,
-        isValid: false,
+        isInvalid: false,
       },
       password: {
         val: "",
@@ -105,67 +109,81 @@ export default {
       },
       confirmPassword: {
         val: "",
-        isValid: false,
+        isInvalid: false,
       },
     };
   },
   computed: {
-    redBorderColorFirstName() {
+    warningFirstName() {
       return { redBorder: this.firstName.isEmpty };
     },
-    redBorderColorLastName() {
+    warningLastName() {
       return { redBorder: this.lastName.isEmpty };
     },
-    redBorderColorId() {
-      return { redBorder: this.userId.isEmpty || this.userId.isValid };
+    warningId() {
+      return { redBorder: this.userId.isEmpty || this.userId.isInvalid };
     },
-    redBorderColorPassword() {
+    warningPassword() {
       return { redBorder: this.password.isEmpty };
     },
-    redBorderColorConfirmPassword() {
-      return { redBorder: this.confirmPassword.isValid };
+    warningConfirmPassword() {
+      return { redBorder: this.confirmPassword.isInvalid };
     },
   },
   methods: {
     validateFirstName() {
       if (this.firstName.val == "") {
         this.firstName.isEmpty = true;
+        return false;
       } else {
         this.firstName.isEmpty = false;
+        return true;
       }
     },
     validateLastName() {
       if (this.lastName.val == "") {
         this.lastName.isEmpty = true;
+        return false;
       } else {
         this.lastName.isEmpty = false;
+        return true;
       }
     },
     validateId() {
       if (this.userId.val == "") {
         this.userId.isEmpty = true;
-        this.userId.isValid = false;
+        this.userId.isInvalid = false;
+        return false;
       } else if (!this.userId.val.includes("@")) {
         this.userId.isEmpty = false;
-        this.userId.isValid = true;
+        this.userId.isInvalid = true;
+        return false;
       } else {
         this.userId.isEmpty = false;
-        this.userId.isValid = false;
+        this.userId.isInvalid = false;
+        return true;
       }
     },
     validatePassword() {
       if (this.password.val == "") {
         this.password.isEmpty = true;
+        return false;
       } else {
         this.password.isEmpty = false;
+        return true;
       }
     },
     validateConfirmPassword() {
       if (this.confirmPassword.val == this.password.val) {
         this.confirmPassword.isValid = true;
+        return false;
       } else {
-        this.confirmPassword.isValid = false;
+        this.confirmPassword.isInvalid = false;
+        return true;
       }
+    },
+    async register() {
+      
     },
   },
 };
