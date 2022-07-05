@@ -89,7 +89,7 @@ export default {
     async login() {
       if (
         !this.userId.isEmpty &&
-        !this.userId.isValid &&
+        !this.userId.isInvalid &&
         !this.password.isEmpty
       ) {
         this.isLoading = true;

@@ -77,16 +77,12 @@
         Already have an account?
         <router-link :to="{ name: 'Login' }">Login</router-link>
       </p>
-      <button class="submit-btn">Sign Up</button>
+      <button class="submit-btn" @click.prevent="register">Sign Up</button>
     </form>
   </div>
 </template>
 
 <script>
-// import firebase from "firebase/app";
-// import "firebase/auth";
-// import db from "../firebase/firebase.js";
-
 export default {
   data() {
     return {
@@ -175,7 +171,7 @@ export default {
     },
     validateConfirmPassword() {
       if (this.confirmPassword.val == this.password.val) {
-        this.confirmPassword.isValid = true;
+        this.confirmPassword.isInvalid = true;
         return false;
       } else {
         this.confirmPassword.isInvalid = false;
@@ -183,7 +179,14 @@ export default {
       }
     },
     async register() {
-      
+      await this.$store
+        .dispatch(
+          "auth/signup",
+          { email: this.userId.val, password: this.password.val },
+          { root: true }
+        )
+        .then()
+        .catch((e) => console.log(e));
     },
   },
 };
