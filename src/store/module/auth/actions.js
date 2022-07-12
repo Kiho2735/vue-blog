@@ -49,6 +49,24 @@ export default {
       tokenExpiration: responseData.expiresIn,
     });
   },
+  async reset(_, payload) {
+    const res = await fetch(
+      "https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDzZopymZAm05oRuxNc2Jyg84MiPRHmooM",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: payload.email,
+          requestType: "PASSWORD_RESET",
+        }),
+      }
+    );
+
+    const responseData = await res.json();
+
+    if (!res.ok) {
+      throw new Error(responseData.error.message || "Failed to authenticate.");
+    }
+  },
   async addUser(context, payload) {
     const uid = context.getters.userId;
 
