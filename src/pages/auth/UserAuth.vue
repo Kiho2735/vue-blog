@@ -60,7 +60,7 @@
           </p>
         </div>
         <p class="form-wrapper__login-register">
-          Forgot your <router-link to="#">username</router-link> or
+          Forgot your
           <router-link :to="{ name: 'Reset Password' }">password</router-link>?
           |
           <router-link :to="{ name: 'Register' }">Register</router-link>
