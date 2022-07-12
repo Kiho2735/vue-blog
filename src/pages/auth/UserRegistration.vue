@@ -81,7 +81,7 @@
           />
           <p v-if="password.isEmpty">Please enter password.</p>
           <p v-else-if="password.isShort">
-            Please enter at least 6 numbers/characters.
+            Please enter at least 6 numbers/characters long.
           </p>
         </div>
 
@@ -201,6 +201,8 @@ export default {
         this.password.isShort = true;
         this.password.isEmpty = false;
         return false;
+      } else if (this.confirmPassword.val == this.password.val) {
+        this.validateConfirmPassword();
       } else {
         this.password.isShort = false;
         this.password.isEmpty = false;
@@ -230,11 +232,10 @@ export default {
         this.validateConfirmPassword()
       ) {
         try {
-          await this.$store.dispatch(
-            "auth/signup",
-            { email: this.userId.val, password: this.password.val },
-            { root: true }
-          );
+          await this.$store.dispatch("auth/signup", {
+            email: this.userId.val,
+            password: this.password.val,
+          });
 
           await this.$store.dispatch(
             "auth/addUser",

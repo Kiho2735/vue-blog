@@ -1,6 +1,6 @@
 export default {
   async signup(context, payload) {
-    const response = await fetch(
+    const res = await fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDzZopymZAm05oRuxNc2Jyg84MiPRHmooM",
       {
         method: "POST",
@@ -12,9 +12,9 @@ export default {
       }
     );
 
-    const responseData = await response.json();
+    const responseData = await res.json();
 
-    if (!response.ok) {
+    if (!res.ok) {
       throw new Error(responseData.error.message || "Failed to Authenticate.");
     }
 
@@ -29,9 +29,6 @@ export default {
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDzZopymZAm05oRuxNc2Jyg84MiPRHmooM",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           email: payload.email,
           password: payload.password,
@@ -40,22 +37,22 @@ export default {
       }
     );
 
+    const responseData = await res.json();
+
     if (!res.ok) {
-      throw new Error("Failed to authenticate.");
+      throw new Error(responseData.error.message || "Failed to authenticate.");
     }
 
-    const data = await res.json();
-
     context.commit("setUser", {
-      userId: data.localId,
-      token: data.idToken,
-      tokenExpiration: data.expiresIn,
+      userId: responseData.localId,
+      token: responseData.idToken,
+      tokenExpiration: responseData.expiresIn,
     });
   },
   async addUser(context, payload) {
     const uid = context.getters.userId;
 
-    const response = await fetch(
+    const res = await fetch(
       `https://vue-blog-88b59-default-rtdb.firebaseio.com/users/${uid}.json`,
       {
         method: "POST",
@@ -67,9 +64,9 @@ export default {
       }
     );
 
-    const responseData = await response.json();
+    const responseData = await res.json();
 
-    if (!response.ok) {
+    if (!res.ok) {
       throw new Error(responseData.error.message || "Failed to Authenticate.");
     }
   },

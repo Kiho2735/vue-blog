@@ -1,18 +1,24 @@
 <template>
-  <!-- <base-dialog :show="!!error" title="Error" @close="closeDialog">
-    <p>{{ error }}</p>
-  </base-dialog>
-  <base-dialog :show="isLoading" title="Authenticating...">
-    Loading...
-  </base-dialog> -->
   <div>
-    <base-loading v-show="false"></base-loading>
+    <base-loading v-show="isLoading"></base-loading>
 
-    <base-dialog :show="false" :isSucceed="true" title="Success">
-      Welcome! name...
+    <base-dialog
+      :show="isSucceed"
+      :isSucceed="true"
+      btnName="Home"
+      title="Confirmed!"
+      @close="goToHome"
+    >
+      Welcome!
     </base-dialog>
-    <base-dialog :show="false" :isSucceed="false" title="Fail">
-      Please check your email or password.
+    <base-dialog
+      :show="!!error"
+      :isSucceed="false"
+      btnName="Close"
+      title="Fail"
+      @close="closeModal"
+    >
+      {{ error }}
     </base-dialog>
 
     <div class="form-wrapper">
@@ -49,6 +55,9 @@
             :class="warningPassword"
           />
           <p v-if="password.isEmpty">Please enter password.</p>
+          <p v-else-if="password.isShort">
+            Please enter at least 6 numbers/characters long.
+          </p>
         </div>
         <p class="form-wrapper__login-register">
           Forgot your <router-link to="#">username</router-link> or
@@ -74,8 +83,10 @@ export default {
       password: {
         val: "",
         isEmpty: false,
+        isShort: false,
       },
       isLoading: false,
+      isSucceed: false,
       error: null,
     };
   },
@@ -88,46 +99,63 @@ export default {
     },
   },
   methods: {
-    async login() {
-      if (
-        !this.userId.isEmpty &&
-        !this.userId.isInvalid &&
-        !this.password.isEmpty
-      ) {
-        this.isLoading = true;
-
-        try {
-          await this.$store.dispatch("auth/login", {
-            email: this.userId.val,
-            password: this.password.val,
-          });
-        } catch (err) {
-          this.error = err.message;
-        }
-
-        this.isLoading = false;
-      }
-    },
     validateId() {
       if (this.userId.val == "") {
         this.userId.isEmpty = true;
         this.userId.isInvalid = false;
+        return false;
       } else if (!this.userId.val.includes("@")) {
         this.userId.isEmpty = false;
         this.userId.isInvalid = true;
+        return false;
       } else {
         this.userId.isEmpty = false;
         this.userId.isInvalid = false;
+        return true;
       }
     },
     validatePassword() {
       if (this.password.val == "") {
         this.password.isEmpty = true;
+        this.password.isShort = false;
+        return false;
+      } else if (this.password.val.length < 6) {
+        this.password.isShort = true;
+        this.password.isEmpty = false;
+        return false;
       } else {
         this.password.isEmpty = false;
+        this.password.isShort = false;
+        return true;
       }
     },
-    closeDialog() {
+    async login() {
+      this.isLoading = true;
+
+      if (this.validateId() && this.validatePassword()) {
+        try {
+          await this.$store.dispatch("auth/login", {
+            email: this.userId.val,
+            password: this.password.val,
+          });
+
+          this.isSucceed = true;
+        } catch (err) {
+          this.error = err.message;
+        }
+      } else {
+        this.validateId();
+        this.validatePassword();
+        this.error = "Please enter valid values.";
+      }
+
+      this.isLoading = false;
+    },
+    goToHome() {
+      this.$router.replace("/");
+      this.isSucceed = false;
+    },
+    closeModal() {
       this.error = null;
     },
   },
