@@ -15,10 +15,7 @@ export default {
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(
-        responseData.error.message || "Failed to Authenticate."
-      );
-      throw error;
+      throw new Error(responseData.error.message || "Failed to Authenticate.");
     }
 
     context.commit("setUser", {
@@ -57,7 +54,7 @@ export default {
   },
   async addUser(context, payload) {
     const uid = context.getters.userId;
-    
+
     const response = await fetch(
       `https://vue-blog-88b59-default-rtdb.firebaseio.com/users/${uid}.json`,
       {
@@ -73,10 +70,7 @@ export default {
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(
-        responseData.error.message || "Failed to Authenticate."
-      );
-      throw error;
+      throw new Error(responseData.error.message || "Failed to Authenticate.");
     }
   },
 };

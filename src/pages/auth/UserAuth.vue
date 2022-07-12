@@ -5,58 +5,60 @@
   <base-dialog :show="isLoading" title="Authenticating...">
     Loading...
   </base-dialog> -->
+  <div>
+    <base-loading v-show="false"></base-loading>
 
-  <base-loading v-show="false"></base-loading>
+    <base-dialog :show="false" :isSucceed="true" title="Success">
+      Welcome! name...
+    </base-dialog>
+    <base-dialog :show="false" :isSucceed="false" title="Fail">
+      Please check your email or password.
+    </base-dialog>
 
-  <base-dialog :show="false" :isSucceed="true" title="Success">
-    Welcome! name...
-  </base-dialog>
-  <base-dialog :show="false" :isSucceed="false" title="Fail">
-    Please check your email or password.
-  </base-dialog>
+    <div class="form-wrapper">
+      <div class="title">
+        <h1>Calm</h1>
+      </div>
 
-  <div class="form-wrapper">
-    <div class="title">
-      <h1>Calm</h1>
+      <form @submit.prevent="login" class="form-wrapper__login">
+        <div class="form-wrapper__title">
+          <h2>Sign In</h2>
+        </div>
+
+        <div class="form-control">
+          <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+          <input
+            type="email"
+            id="id"
+            v-model.trim="userId.val"
+            @blur="validateId"
+            placeholder="Email"
+            :class="warningId"
+          />
+          <p v-if="userId.isEmpty">Please enter email.</p>
+          <p v-else-if="userId.isInvalid">Please enter valid email.</p>
+        </div>
+        <div class="form-control">
+          <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
+          <input
+            type="password"
+            id="password"
+            v-model.trim="password.val"
+            @blur="validatePassword"
+            placeholder="Password"
+            :class="warningPassword"
+          />
+          <p v-if="password.isEmpty">Please enter password.</p>
+        </div>
+        <p class="form-wrapper__login-register">
+          Forgot your <router-link to="#">username</router-link> or
+          <router-link :to="{ name: 'Reset Password' }">password</router-link>?
+          |
+          <router-link :to="{ name: 'Register' }">Register</router-link>
+        </p>
+        <button class="submit-btn">Sign In</button>
+      </form>
     </div>
-
-    <form @submit.prevent="login" class="form-wrapper__login">
-      <div class="form-wrapper__title">
-        <h2>Sign In</h2>
-      </div>
-
-      <div class="form-control">
-        <font-awesome-icon :icon="['fa', 'user']" class="icon" />
-        <input
-          type="email"
-          id="id"
-          v-model.trim="userId.val"
-          @blur="validateId"
-          placeholder="Email"
-          :class="warningId"
-        />
-        <p v-if="userId.isEmpty">Please enter email.</p>
-        <p v-else-if="userId.isInvalid">Please enter valid email.</p>
-      </div>
-      <div class="form-control">
-        <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
-        <input
-          type="password"
-          id="password"
-          v-model.trim="password.val"
-          @blur="validatePassword"
-          placeholder="Password"
-          :class="warningPassword"
-        />
-        <p v-if="password.isEmpty">Please enter password.</p>
-      </div>
-      <p class="form-wrapper__login-register">
-        Forgot your <router-link to="#">username</router-link> or
-        <router-link :to="{ name: 'Reset Password' }">password</router-link>? |
-        <router-link :to="{ name: 'Register' }">Register</router-link>
-      </p>
-      <button class="submit-btn">Sign In</button>
-    </form>
   </div>
 </template>
 
