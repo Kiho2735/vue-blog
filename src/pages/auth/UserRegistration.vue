@@ -1,84 +1,112 @@
 <template>
-  <div class="form-wrapper">
-    <div class="title">
-      <h1>Calm</h1>
+  <div>
+    <base-loading v-show="isLoading"></base-loading>
+
+    <base-dialog
+      :show="isSucceed"
+      :isSucceed="true"
+      btnName="Home"
+      title="Confirmed!"
+      @close="goToHome"
+    >
+      Nice to meet you, {{ firstName.val }}!
+    </base-dialog>
+    <base-dialog
+      :show="!!error"
+      :isSucceed="false"
+      btnName="Close"
+      title="Fail"
+      @close="closeModal"
+    >
+      {{ error }}
+    </base-dialog>
+
+    <div class="form-wrapper">
+      <div class="title">
+        <h1>Calm</h1>
+      </div>
+
+      <form @submit.prevent="login" class="form-wrapper__login">
+        <div class="form-wrapper__title">
+          <h2>Sign Up</h2>
+        </div>
+
+        <div class="form-control">
+          <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+          <input
+            type="text"
+            v-model.trim="firstName.val"
+            @blur="validateFirstName"
+            placeholder="First Name"
+            :class="warningFirstName"
+          />
+          <p v-if="firstName.isEmpty">Please enter first name.</p>
+        </div>
+
+        <div class="form-control">
+          <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+          <input
+            type="text"
+            v-model.trim="lastName.val"
+            @blur="validateLastName"
+            placeholder="Last Name"
+            :class="warningLastName"
+          />
+          <p v-if="lastName.isEmpty">Please enter last name.</p>
+        </div>
+
+        <div class="form-control">
+          <font-awesome-icon :icon="['fa', 'envelope']" class="icon" />
+          <input
+            type="email"
+            id="id"
+            v-model.trim="userId.val"
+            @blur="validateId"
+            placeholder="Email (Username)"
+            :class="warningId"
+          />
+          <p v-if="userId.isEmpty">Please enter email.</p>
+          <p v-else-if="userId.isInvalid">Please enter valid email.</p>
+        </div>
+
+        <div class="form-control">
+          <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
+          <input
+            type="password"
+            id="password"
+            v-model.trim="password.val"
+            @blur="validatePassword"
+            placeholder="Password"
+            :class="warningPassword"
+          />
+          <p v-if="password.isEmpty">Please enter password.</p>
+          <p v-else-if="password.isShort">
+            Please enter at least 6 numbers/characters.
+          </p>
+        </div>
+
+        <div class="form-control">
+          <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
+          <input
+            type="password"
+            id="confirmPassword"
+            v-model.trim="confirmPassword.val"
+            @blur="validateConfirmPassword"
+            placeholder="Confirm Password"
+            :class="warningConfirmPassword"
+          />
+          <p v-if="confirmPassword.isInvalid">
+            Please enter the same password.
+          </p>
+        </div>
+
+        <p class="form-wrapper__login-register">
+          Already have an account?
+          <router-link :to="{ name: 'Login' }">Login</router-link>
+        </p>
+        <button class="submit-btn" @click.prevent="register">Sign Up</button>
+      </form>
     </div>
-
-    <form @submit.prevent="login" class="form-wrapper__login">
-      <div class="form-wrapper__title">
-        <h2>Sign Up</h2>
-      </div>
-
-      <div class="form-control">
-        <font-awesome-icon :icon="['fa', 'user']" class="icon" />
-        <input
-          type="text"
-          v-model.trim="firstName.val"
-          @blur="validateFirstName"
-          placeholder="First Name"
-          :class="warningFirstName"
-        />
-        <p v-if="firstName.isEmpty">Please enter first name.</p>
-      </div>
-
-      <div class="form-control">
-        <font-awesome-icon :icon="['fa', 'user']" class="icon" />
-        <input
-          type="text"
-          v-model.trim="lastName.val"
-          @blur="validateLastName"
-          placeholder="Last Name"
-          :class="warningLastName"
-        />
-        <p v-if="lastName.isEmpty">Please enter last name.</p>
-      </div>
-
-      <div class="form-control">
-        <font-awesome-icon :icon="['fa', 'envelope']" class="icon" />
-        <input
-          type="email"
-          id="id"
-          v-model.trim="userId.val"
-          @blur="validateId"
-          placeholder="Email (Username)"
-          :class="warningId"
-        />
-        <p v-if="userId.isEmpty">Please enter email.</p>
-        <p v-else-if="userId.isInvalid">Please enter valid email.</p>
-      </div>
-
-      <div class="form-control">
-        <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
-        <input
-          type="password"
-          id="password"
-          v-model.trim="password.val"
-          @blur="validatePassword"
-          placeholder="Password"
-          :class="warningPassword"
-        />
-        <p v-if="password.isEmpty">Please enter password.</p>
-      </div>
-
-      <div class="form-control">
-        <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
-        <input
-          type="password"
-          id="confirmPassword"
-          v-model.trim="confirmPassword.val"
-          @blur="validateConfirmPassword"
-          placeholder="Confirm Password"
-          :class="warningConfirmPassword"
-        />
-        <p v-if="confirmPassword.isInvalid">Please enter the same password.</p>
-      </div>
-
-      <p class="form-wrapper__login-register">
-        Already have an account?
-        <router-link :to="{ name: 'Login' }">Login</router-link>
-      </p>
-      <button class="submit-btn" @click.prevent="register">Sign Up</button>
-    </form>
   </div>
 </template>
 
@@ -102,11 +130,15 @@ export default {
       password: {
         val: "",
         isEmpty: false,
+        isShort: false,
       },
       confirmPassword: {
         val: "",
         isInvalid: false,
       },
+      isLoading: false,
+      isSucceed: false,
+      error: null,
     };
   },
   computed: {
@@ -163,14 +195,23 @@ export default {
     validatePassword() {
       if (this.password.val == "") {
         this.password.isEmpty = true;
+        this.password.isShort = false;
+        return false;
+      } else if (this.password.val.length < 6) {
+        this.password.isShort = true;
+        this.password.isEmpty = false;
         return false;
       } else {
+        this.password.isShort = false;
         this.password.isEmpty = false;
         return true;
       }
     },
     validateConfirmPassword() {
-      if (this.confirmPassword.val == this.password.val) {
+      if (
+        this.confirmPassword.val != this.password.val ||
+        this.confirmPassword.val == ""
+      ) {
         this.confirmPassword.isInvalid = true;
         return false;
       } else {
@@ -179,14 +220,53 @@ export default {
       }
     },
     async register() {
-      await this.$store
-        .dispatch(
-          "auth/signup",
-          { email: this.userId.val, password: this.password.val },
-          { root: true }
-        )
-        .then()
-        .catch((e) => console.log(e));
+      this.isLoading = true;
+
+      if (
+        this.validateFirstName() &&
+        this.validateLastName() &&
+        this.validateId() &&
+        this.validatePassword() &&
+        this.validateConfirmPassword()
+      ) {
+        try {
+          await this.$store.dispatch(
+            "auth/signup",
+            { email: this.userId.val, password: this.password.val },
+            { root: true }
+          );
+
+          await this.$store.dispatch(
+            "auth/addUser",
+            {
+              email: this.userId.val,
+              firstName: this.firstName.val,
+              lastName: this.lastName.val,
+            },
+            { root: true }
+          );
+
+          this.isSucceed = true;
+        } catch (e) {
+          this.error = e.message;
+        }
+      } else {
+        this.validateFirstName();
+        this.validateLastName();
+        this.validateId();
+        this.validatePassword();
+        this.validateConfirmPassword();
+        this.error = "Please enter valid values.";
+      }
+
+      this.isLoading = false;
+    },
+    goToHome() {
+      this.$router.replace("/");
+      this.isSucceed = false;
+    },
+    closeModal() {
+      this.error = null;
     },
   },
 };

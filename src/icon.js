@@ -12,7 +12,10 @@ import {
   faLock,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-// import { fafac } from "@fortawesome/free-regular-svg-icons";
+import {
+  faCheckCircle,
+  faCircleXmark,
+} from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 // Font Awesome
@@ -28,5 +31,8 @@ library.add(faStar);
 library.add(faUser);
 library.add(faLock);
 library.add(faEnvelope);
+
+library.add(faCheckCircle);
+library.add(faCircleXmark);
 
 export default FontAwesomeIcon;

@@ -16,7 +16,7 @@ export default {
 
     if (!response.ok) {
       const error = new Error(
-        responseData.message || "Failed to authenticate."
+        responseData.error.message || "Failed to Authenticate."
       );
       throw error;
     }
@@ -54,5 +54,29 @@ export default {
       token: data.idToken,
       tokenExpiration: data.expiresIn,
     });
+  },
+  async addUser(context, payload) {
+    const uid = context.getters.userId;
+    
+    const response = await fetch(
+      `https://vue-blog-88b59-default-rtdb.firebaseio.com/users/${uid}.json`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          email: payload.email,
+          firstName: payload.firstName,
+          lastName: payload.lastName,
+        }),
+      }
+    );
+
+    const responseData = await response.json();
+
+    if (!response.ok) {
+      const error = new Error(
+        responseData.error.message || "Failed to Authenticate."
+      );
+      throw error;
+    }
   },
 };

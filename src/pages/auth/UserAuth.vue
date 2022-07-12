@@ -11,7 +11,7 @@
   <base-dialog :show="false" :isSucceed="true" title="Success">
     Welcome! name...
   </base-dialog>
-  <base-dialog :show="false" :isSucceed="false" title="Failure">
+  <base-dialog :show="false" :isSucceed="false" title="Fail">
     Please check your email or password.
   </base-dialog>
 

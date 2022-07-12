@@ -4,16 +4,28 @@
     <transition name="dialog">
       <dialog open v-if="show" class="modal">
         <header class="title" :class="succeed">
+          <div class="icon">
+            <font-awesome-icon
+              v-if="isSucceed"
+              :icon="['far', 'circle-check']"
+              class="fa-2xl"
+            />
+            <font-awesome-icon
+              v-else
+              :icon="['far', 'circle-xmark']"
+              class="fa-2xl"
+            />
+          </div>
+
           <h2>{{ title }}</h2>
         </header>
-        <hr />
 
         <section class="description">
           <slot></slot>
         </section>
 
         <menu>
-          <button @click="close">Close</button>
+          <button @click="close">{{ btnName }}</button>
         </menu>
       </dialog>
     </transition>
@@ -33,6 +45,10 @@ export default {
     },
     isSucceed: {
       type: Boolean,
+      required: true,
+    },
+    btnName: {
+      type: String,
       required: true,
     },
   },
@@ -71,9 +87,21 @@ export default {
   border: none;
   border-radius: 15px;
 
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+  }
+
   .title {
+    text-align: center;
     font-size: 1.5rem;
     margin-bottom: 1rem;
+
+    h2 {
+      margin: 1rem;
+    }
   }
 
   .success {
@@ -87,6 +115,7 @@ export default {
   .description {
     font-size: 1.5rem;
     margin: 1rem 0;
+    color: rgb(112, 112, 112);
   }
 
   menu {
