@@ -60,13 +60,25 @@
           <input
             type="email"
             id="id"
-            v-model.trim="userId.val"
-            @blur="validateId"
-            placeholder="Email (Username)"
-            :class="warningId"
+            v-model.trim="email.val"
+            @blur="validateEmail"
+            placeholder="Email"
+            :class="warningEmail"
           />
-          <p v-if="userId.isEmpty">Please enter email.</p>
-          <p v-else-if="userId.isInvalid">Please enter valid email.</p>
+          <p v-if="email.isEmpty">Please enter email.</p>
+          <p v-else-if="email.isInvalid">Please enter valid email.</p>
+        </div>
+
+        <div class="form-control">
+          <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+          <input
+            type="text"
+            v-model.trim="username.val"
+            @blur="validateUsername"
+            placeholder="Username"
+            :class="warningUsername"
+          />
+          <p v-if="username.isEmpty">Please enter username.</p>
         </div>
 
         <div class="form-control">
@@ -122,10 +134,14 @@ export default {
         val: "",
         isEmpty: false,
       },
-      userId: {
+      email: {
         val: "",
         isEmpty: false,
         isInvalid: false,
+      },
+      username: {
+        val: "",
+        isEmpty: false,
       },
       password: {
         val: "",
@@ -148,8 +164,11 @@ export default {
     warningLastName() {
       return { redBorder: this.lastName.isEmpty };
     },
-    warningId() {
-      return { redBorder: this.userId.isEmpty || this.userId.isInvalid };
+    warningEmail() {
+      return { redBorder: this.email.isEmpty || this.email.isInvalid };
+    },
+    warningUsername() {
+      return { redBorder: this.username.isEmpty };
     },
     warningPassword() {
       return { redBorder: this.password.isEmpty };
@@ -177,18 +196,27 @@ export default {
         return true;
       }
     },
-    validateId() {
-      if (this.userId.val == "") {
-        this.userId.isEmpty = true;
-        this.userId.isInvalid = false;
+    validateEmail() {
+      if (this.email.val == "") {
+        this.email.isEmpty = true;
+        this.email.isInvalid = false;
         return false;
-      } else if (!this.userId.val.includes("@")) {
-        this.userId.isEmpty = false;
-        this.userId.isInvalid = true;
+      } else if (!this.email.val.includes("@")) {
+        this.email.isEmpty = false;
+        this.email.isInvalid = true;
         return false;
       } else {
-        this.userId.isEmpty = false;
-        this.userId.isInvalid = false;
+        this.email.isEmpty = false;
+        this.email.isInvalid = false;
+        return true;
+      }
+    },
+    validateUsername() {
+      if (this.username.val == "") {
+        this.username.isEmpty = true;
+        return false;
+      } else {
+        this.username.isEmpty = false;
         return true;
       }
     },
@@ -202,7 +230,7 @@ export default {
         this.password.isEmpty = false;
         return false;
       } else if (this.confirmPassword.val == this.password.val) {
-        this.validateConfirmPassword();
+        return this.validateConfirmPassword();
       } else {
         this.password.isShort = false;
         this.password.isEmpty = false;
@@ -227,25 +255,23 @@ export default {
       if (
         this.validateFirstName() &&
         this.validateLastName() &&
-        this.validateId() &&
+        this.validateEmail() &&
+        this.validateUsername() &&
         this.validatePassword() &&
         this.validateConfirmPassword()
       ) {
         try {
           await this.$store.dispatch("auth/signup", {
-            email: this.userId.val,
+            email: this.email.val,
             password: this.password.val,
           });
 
-          await this.$store.dispatch(
-            "auth/addUser",
-            {
-              email: this.userId.val,
-              firstName: this.firstName.val,
-              lastName: this.lastName.val,
-            },
-            { root: true }
-          );
+          await this.$store.dispatch("auth/addUser", {
+            email: this.email.val,
+            username: this.username.val,
+            firstName: this.firstName.val,
+            lastName: this.lastName.val,
+          });
 
           this.isSucceed = true;
         } catch (e) {
@@ -254,7 +280,8 @@ export default {
       } else {
         this.validateFirstName();
         this.validateLastName();
-        this.validateId();
+        this.validateEmail();
+        this.validateUsername();
         this.validatePassword();
         this.validateConfirmPassword();
         this.error = "Please enter valid values.";

@@ -76,6 +76,7 @@ export default {
         method: "POST",
         body: JSON.stringify({
           email: payload.email,
+          username: payload.username,
           firstName: payload.firstName,
           lastName: payload.lastName,
         }),
