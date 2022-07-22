@@ -22,47 +22,46 @@
     </base-dialog>
 
     <div class="form-wrapper">
-      <div class="title">
-        <h1>Calm</h1>
-      </div>
-
       <form @submit.prevent="login" class="form-wrapper__login">
         <div class="form-wrapper__title">
-          <h2>Sign Up</h2>
+          <h1>Hello!</h1>
+          <p>Please enter details.</p>
         </div>
 
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+          <label for="firstName">First Name</label>
           <input
+            id="firstName"
             type="text"
             v-model.trim="firstName.val"
             @blur="validateFirstName"
-            placeholder="First Name"
+            placeholder="Please enter your first name."
             :class="warningFirstName"
           />
           <p v-if="firstName.isEmpty">Please enter first name.</p>
         </div>
 
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+          <label for="lastName">Last Name</label>
           <input
+            id="lastName"
             type="text"
             v-model.trim="lastName.val"
             @blur="validateLastName"
-            placeholder="Last Name"
+            placeholder="Please enter your last name."
             :class="warningLastName"
           />
           <p v-if="lastName.isEmpty">Please enter last name.</p>
         </div>
 
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'envelope']" class="icon" />
+          <label for="id">Email Address</label>
           <input
             type="email"
             id="id"
             v-model.trim="email.val"
             @blur="validateEmail"
-            placeholder="Email"
+            placeholder="Please enter your email address."
             :class="warningEmail"
           />
           <p v-if="email.isEmpty">Please enter email.</p>
@@ -70,25 +69,26 @@
         </div>
 
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+          <label for="username">Username</label>
           <input
+            id="username"
             type="text"
             v-model.trim="username.val"
             @blur="validateUsername"
-            placeholder="Username"
+            placeholder="Please enter your username."
             :class="warningUsername"
           />
           <p v-if="username.isEmpty">Please enter username.</p>
         </div>
 
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
+          <label for="password">Password</label>
           <input
             type="password"
             id="password"
             v-model.trim="password.val"
             @blur="validatePassword"
-            placeholder="Password"
+            placeholder="Please enter your password."
             :class="warningPassword"
           />
           <p v-if="password.isEmpty">Please enter password.</p>
@@ -98,13 +98,13 @@
         </div>
 
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
+          <label for="confirmPassword">Confirm Password</label>
           <input
             type="password"
             id="confirmPassword"
             v-model.trim="confirmPassword.val"
             @blur="validateConfirmPassword"
-            placeholder="Confirm Password"
+            placeholder="Please re-enter your password."
             :class="warningConfirmPassword"
           />
           <p v-if="confirmPassword.isInvalid">

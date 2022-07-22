@@ -21,23 +21,20 @@
       {{ error }}
     </base-dialog>
     <div class="form-wrapper">
-      <div class="title">
-        <h1>Calm</h1>
-      </div>
-
       <form class="form-wrapper__login">
         <div class="form-wrapper__title">
-          <h2>Reset Password</h2>
+          <h1>Reset Password</h1>
+          <p>Please enter your email address.</p>
         </div>
 
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'envelope']" class="icon" />
+          <label for="id">Email Address</label>
           <input
             type="email"
             id="id"
             v-model.trim="email.val"
             @blur="validateEmail"
-            placeholder="Email"
+            placeholder="Please enter email address"
             :class="redBorderColor"
           />
           <p v-if="email.isEmpty">Please enter email.</p>

@@ -8,9 +8,6 @@ import {
   faPenToSquare,
   faTrash,
   faStar,
-  faUser,
-  faLock,
-  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faCheckCircle,
@@ -28,9 +25,6 @@ library.add(faArrowRight);
 library.add(faPenToSquare);
 library.add(faTrash);
 library.add(faStar);
-library.add(faUser);
-library.add(faLock);
-library.add(faEnvelope);
 
 library.add(faCheckCircle);
 library.add(faCircleXmark);

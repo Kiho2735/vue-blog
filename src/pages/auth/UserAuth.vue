@@ -22,36 +22,33 @@
     </base-dialog>
 
     <div class="form-wrapper">
-      <div class="title">
-        <h1>Calm</h1>
-      </div>
-
       <form @submit.prevent="login" class="form-wrapper__login">
         <div class="form-wrapper__title">
-          <h2>Sign In</h2>
+          <h1>Welcome Back!</h1>
+          <p>Please your email and password.</p>
         </div>
 
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'user']" class="icon" />
+          <label for="id">Email</label>
           <input
             type="email"
             id="id"
             v-model.trim="userId.val"
             @blur="validateId"
-            placeholder="Email"
+            placeholder="Enter your email"
             :class="warningId"
           />
           <p v-if="userId.isEmpty">Please enter email.</p>
           <p v-else-if="userId.isInvalid">Please enter valid email.</p>
         </div>
         <div class="form-control">
-          <font-awesome-icon :icon="['fa', 'lock']" class="icon" />
+          <label for="password">Passowrd</label>
           <input
             type="password"
             id="password"
             v-model.trim="password.val"
             @blur="validatePassword"
-            placeholder="Password"
+            placeholder="Enter your password"
             :class="warningPassword"
           />
           <p v-if="password.isEmpty">Please enter password.</p>
@@ -60,9 +57,9 @@
           </p>
         </div>
         <p class="form-wrapper__login-register">
-          Forgot your
-          <router-link :to="{ name: 'Reset Password' }">password</router-link>?
-          |
+          <router-link :to="{ name: 'Reset Password' }"
+            >Forgot password</router-link
+          >? |
           <router-link :to="{ name: 'Register' }">Register</router-link>
         </p>
         <button class="submit-btn">Sign In</button>
@@ -170,25 +167,28 @@ export default {
   align-items: center;
   height: 100vh;
 
-  .title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
   &__title {
     width: 100%;
-    margin-bottom: 1rem;
+
+    h1 {
+      font-weight: 400;
+      margin-bottom: 0.7rem;
+    }
+
+    p {
+      font-size: 1.3rem;
+      font-weight: 300;
+      margin-bottom: 0.7rem;
+      color: rgb(139, 139, 139);
+    }
   }
 
   &__login {
-    border: 1px solid rgb(190, 190, 190);
-    border-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    padding: 3rem 2rem 4rem;
   }
 
   .form-control {
@@ -200,18 +200,18 @@ export default {
       width: 350px;
     }
 
+    label {
+      font-size: 1.3rem;
+      font-weight: 300;
+    }
+
     .redBorder {
       border: 1px solid red;
     }
 
-    .icon {
-      position: absolute;
-      left: 10px;
-      top: 13px;
-    }
-
     input {
-      padding: 0.8rem 2.5rem;
+      margin-top: 0.2rem;
+      padding: 0.8rem;
       font-size: 1rem;
       width: 100%;
       border-radius: 10px;
