@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login-container">
     <base-loading v-show="isLoading"></base-loading>
 
     <base-dialog
@@ -119,6 +119,7 @@
         <button class="submit-btn" @click.prevent="register">Sign Up</button>
       </form>
     </div>
+    <div class="background"></div>
   </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login-container">
     <base-loading v-show="isLoading"></base-loading>
 
     <base-dialog
@@ -65,6 +65,7 @@
         <button class="submit-btn">Sign In</button>
       </form>
     </div>
+    <div class="background"></div>
   </div>
 </template>
 
@@ -160,12 +161,41 @@ export default {
 </script>
 
 <style lang="scss">
+.login-container {
+  display: flex;
+}
+
+.background {
+  display: none;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../../assets/login.jpg");
+  width: 50vw;
+  height: 100vh;
+  @media (min-width: 900px) {
+    display: inline-block;
+  }
+
+  @media (min-width: 1100px) {
+    width: 40vw;
+  }
+}
+
 .form-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100vw;
   height: 100vh;
+
+  @media (min-width: 900px) {
+    width: 50vw;
+  }
+
+  @media (min-width: 1100px) {
+    width: 60vw;
+  }
 
   &__title {
     width: 100%;
