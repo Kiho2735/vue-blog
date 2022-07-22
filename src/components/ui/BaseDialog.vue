@@ -87,6 +87,21 @@ export default {
   border: none;
   border-radius: 15px;
 
+  @media (min-width: 800px) {
+    width: 60%;
+    left: 20%;
+  }
+
+  @media (min-width: 1000px) {
+    width: 50%;
+    left: 30%;
+  }
+
+  @media (min-width: 1200px) {
+    width: 30%;
+    left: 35%;
+  }
+
   .icon {
     display: flex;
     justify-content: center;
@@ -123,6 +138,7 @@ export default {
     justify-content: end;
 
     button {
+      cursor: pointer;
       border: none;
       color: #fff;
       background-color: #000;
