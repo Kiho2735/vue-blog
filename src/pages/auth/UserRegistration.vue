@@ -265,6 +265,9 @@ export default {
           await this.$store.dispatch("auth/signup", {
             email: this.email.val,
             password: this.password.val,
+            firstName: this.firstName.val,
+            lastName: this.lastName.val,
+            username: this.username.val,
           });
 
           await this.$store.dispatch("auth/addUser", {

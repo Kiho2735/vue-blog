@@ -9,6 +9,11 @@ export default {
       userId: null,
       token: null,
       tokenExpiration: null,
+      userEmail: null,
+      userFirstName: null,
+      userLastName: null,
+      username: null,
+      userInitial: null,
     };
   },
   getters,

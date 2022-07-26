@@ -22,6 +22,10 @@ export default {
       token: responseData.idToken,
       userId: responseData.localId,
       tokenExpiration: responseData.expiresIn,
+      email: payload.email,
+      firstName: payload.firstName,
+      lastName: payload.lastName,
+      username: payload.username,
     });
   },
   async login(context, payload) {
@@ -43,10 +47,19 @@ export default {
       throw new Error(responseData.error.message || "Failed to authenticate.");
     }
 
+    const userInfo = await context.dispatch("getCurrentUser", {
+      uid: responseData.localId,
+      token: responseData.idToken,
+    });
+
     context.commit("setUser", {
       userId: responseData.localId,
       token: responseData.idToken,
       tokenExpiration: responseData.expiresIn,
+      email: userInfo.email,
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      username: userInfo.username,
     });
   },
   async reset(_, payload) {
@@ -71,7 +84,7 @@ export default {
     const uid = context.getters.userId;
 
     const res = await fetch(
-      `https://vue-blog-88b59-default-rtdb.firebaseio.com/users/${uid}.json`,
+      `https://vue-blog-87c6a-default-rtdb.firebaseio.com/users/${uid}.json`,
       {
         method: "POST",
         body: JSON.stringify({
@@ -88,5 +101,23 @@ export default {
     if (!res.ok) {
       throw new Error(responseData.error.message || "Failed to Authenticate.");
     }
+  },
+  async getCurrentUser(context, payload) {
+    const uid = payload.uid;
+    const token = payload.token;
+
+    const res = await fetch(
+      `https://vue-blog-87c6a-default-rtdb.firebaseio.com/users/${uid}.json?auth=${token}`
+    );
+
+    const responseData = await res.json();
+
+    if (!res.ok) {
+      throw new Error(responseData.error.message || "Failed to authenticate.");
+    }
+
+    const userInfo = Object.values(responseData)[0];
+
+    return userInfo;
   },
 };
