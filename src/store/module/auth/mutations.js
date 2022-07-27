@@ -7,8 +7,8 @@ export default {
     state.userFirstName = payload.firstName;
     state.userLastName = payload.lastName;
     state.username = payload.username;
-    state.userInitial =
-      payload.firstName.match(/(\b\S)?/g).join("") +
-      payload.lastName.match(/(\b\S)?/g).join("");
+    state.userInitial = null;
+    // payload.firstName.match(/(\b\S)?/g).join("") +
+    // payload.lastName.match(/(\b\S)?/g).join("");
   },
 };

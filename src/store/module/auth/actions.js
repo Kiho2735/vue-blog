@@ -120,4 +120,16 @@ export default {
 
     return userInfo;
   },
+  logout(context) {
+    context.commit("setUser", {
+      userId: null,
+      token: null,
+      tokenExpiration: null,
+      userEmail: null,
+      userFirstName: null,
+      userLastName: null,
+      username: null,
+      userInitial: null,
+    });
+  },
 };

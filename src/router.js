@@ -7,6 +7,8 @@ import UserRegistration from "./pages/auth/UserRegistration.vue";
 import ResetPassword from "./pages/auth/ResetPassword.vue";
 import NotFound from "./pages/NotFound.vue";
 
+import store from "./store/index.js";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -21,19 +23,19 @@ const router = createRouter({
       path: "/login",
       name: "Login",
       component: UserAuth,
-      meta: { title: "Login" },
+      meta: { title: "Login", requiresUnauth: true },
     },
     {
       path: "/register",
       name: "Register",
       component: UserRegistration,
-      meta: { title: "Register" },
+      meta: { title: "Register", requiresUnauth: true },
     },
     {
       path: "/resetPassword",
       name: "Reset Password",
       component: ResetPassword,
-      meta: { title: "Reset Password" },
+      meta: { title: "Reset Password", requiresUnauth: true },
     },
     {
       path: "/:notFound(.*)",
@@ -51,8 +53,13 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _, next) => {
-  document.title = `${to.meta.title} | Calm`;
-  next();
+  if (to.meta.requiresUnauth && store.getters["auth/isAuthenticated"]) {
+    document.title = `Home | Calm`;
+    next({ name: "Home" });
+  } else {
+    document.title = `${to.meta.title} | Calm`;
+    next();
+  }
 });
 
 export default router;
