@@ -24,6 +24,11 @@ export default {
       navigationDisabled: null,
     };
   },
+  computed: {
+    autoLogout() {
+      return this.$store.getters["auth/autoLogout"];
+    },
+  },
   methods: {
     checkRoute() {
       const routeName = this.$route.name;
@@ -39,9 +44,17 @@ export default {
       }
     },
   },
+  created() {
+    this.$store.dispatch("auth/autoLogin");
+  },
   watch: {
     $route() {
       this.checkRoute();
+    },
+    autoLogout(curVal, oldVal) {
+      if (curVal && curVal != oldVal) {
+        this.$router.replace({ name: "Home" });
+      }
     },
   },
 };

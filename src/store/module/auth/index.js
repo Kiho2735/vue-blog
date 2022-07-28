@@ -8,12 +8,12 @@ export default {
     return {
       userId: null,
       token: null,
-      tokenExpiration: null,
       userEmail: null,
       userFirstName: null,
       userLastName: null,
       username: null,
       userInitial: null,
+      autoLogout: false,
     };
   },
   getters,
