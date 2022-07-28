@@ -34,7 +34,44 @@
           /></a>
         </div>
 
-        <base-button :to="{ name: 'Login' }">Log In</base-button>
+        <base-button :to="{ name: 'Login' }" v-if="!isAuthenticated"
+          >Log In</base-button
+        >
+        <div v-else class="profile-container">
+          <div class="profile-initial" @click="openProfile">
+            {{ this.$store.getters["auth/initial"] }}
+          </div>
+          <div class="profile-menu" v-if="profile">
+            <div class="info">
+              <div class="info__initial">
+                {{ this.$store.getters["auth/initial"] }}
+              </div>
+              <div class="info__right">
+                <p>
+                  {{ this.$store.getters["auth/firstName"] }}
+                  {{ this.$store.getters["auth/lastName"] }}
+                </p>
+                <p>{{ this.$store.getters["auth/username"] }}</p>
+                <p>{{ this.$store.getters["auth/email"] }}</p>
+              </div>
+            </div>
+            <div class="options">
+              <div class="option">
+                <router-link class="option__link" to="#">
+                  <p>Profile</p>
+                </router-link>
+              </div>
+              <div class="option">
+                <router-link class="option__link" to="#">
+                  <p>Admin</p>
+                </router-link>
+              </div>
+              <div class="option">
+                <p>Sign Out</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="mobile-action-icons">
@@ -94,11 +131,20 @@ export default {
   data() {
     return {
       mobileNav: false,
+      profile: false,
     };
+  },
+  computed: {
+    isAuthenticated() {
+      return this.$store.getters["auth/isAuthenticated"];
+    },
   },
   methods: {
     openNav() {
       this.mobileNav = !this.mobileNav;
+    },
+    openProfile() {
+      this.profile = !this.profile;
     },
   },
 };
@@ -130,6 +176,19 @@ a {
     display: none;
   }
 
+  .profile-container {
+    position: relative;
+  }
+
+  .profile-initial {
+    background-color: rgb(0, 160, 253);
+    color: #fff;
+    padding: 0.5rem 0.7rem;
+    border-radius: 50%;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
   .mobile-action-icons {
     display: flex;
     align-items: center;
@@ -139,6 +198,47 @@ a {
 
   &__xbar {
     color: #fff;
+  }
+}
+
+.profile-menu {
+  position: absolute;
+  right: 0.2rem;
+  top: 3rem;
+  background-color: rgb(151, 151, 151);
+  color: #fff;
+  border-radius: 5px;
+
+  .info {
+    padding: 1rem;
+    border-bottom: 1px solid #fff;
+    display: flex;
+
+    &__initial {
+      padding: 1rem;
+      margin: 0.6rem;
+      margin-right: 1rem;
+      border-radius: 50%;
+      background-color: #fff;
+      color: #000;
+      font-size: 1.2rem;
+    }
+
+    &__right {
+      p:first-child {
+        font-size: 1.4rem;
+      }
+    }
+  }
+
+  .options {
+    .option {
+      padding: 0.4rem 1rem;
+
+      &__link {
+        color: #fff;
+      }
+    }
   }
 }
 
